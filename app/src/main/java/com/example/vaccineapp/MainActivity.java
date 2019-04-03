@@ -1,5 +1,6 @@
 package com.example.vaccineapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,57 +19,42 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradiant_bar));
-        btnFindDocto = findViewById(R.id.btnFindDocto);
-        btnHospital = findViewById(R.id.btnHospital);
-        btnDoctriod = findViewById(R.id.btn3);
-        btnAppointment = findViewById(R.id.btn4);
-        btnEmergency = findViewById(R.id.btn5);
-        btnMedicalShop = findViewById(R.id.btn6);
-        btnFindDoctor = findViewById(R.id.btnFindDoctor);
-        btnFindDoctor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"This is Find Doctor",Toast.LENGTH_LONG).show();
+    }
 
-            }
-        });
+    public void changeToFindDoctors(View v){
+        Toast.makeText(getApplicationContext(),"Change to 'Find Doctors' screen",Toast.LENGTH_LONG).show();
+        //Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
+    }
 
-        btnFindDocto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"This is Find Docto",Toast.LENGTH_LONG).show();
-            }
-        });
-        btnHospital.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"This is Find Hospital",Toast.LENGTH_LONG).show();
-            }
-        });
-        btnDoctriod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"This is Doctriod",Toast.LENGTH_LONG).show();
-            }
-        });
-        btnAppointment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"This is Appointment",Toast.LENGTH_LONG).show();
-            }
-        });
-        btnEmergency.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"This is Emergency",Toast.LENGTH_LONG).show();
-            }
-        });
-        btnMedicalShop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"This is Medical Shop",Toast.LENGTH_LONG).show();
-            }
-        });
+    public void changeToHospitals(View v){
+        Toast.makeText(getApplicationContext(),"Change to 'Hospitals' screen",Toast.LENGTH_LONG).show();
+        //Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
+    }
+
+    public void changeToHistorical(View v){
+        Toast.makeText(getApplicationContext(),"Change to 'Historical or something' screen",Toast.LENGTH_LONG).show();
+        //Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
+    }
+
+    public void changeToAppointment(View v){
+        Toast.makeText(getApplicationContext(),"Change to 'Appointments' screen",Toast.LENGTH_LONG).show();
+        //Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
+    }
+
+    public void changeToEmergency(View v){
+        Toast.makeText(getApplicationContext(),"Change to 'Emergency' screen",Toast.LENGTH_LONG).show();
+        //Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
+    }
+
+    public void changeToMedicalShop(View v){
+        Toast.makeText(getApplicationContext(),"Change to 'Medical Shop' screen",Toast.LENGTH_LONG).show();
+        //Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
     }
 
 }
