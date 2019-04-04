@@ -1,5 +1,6 @@
 package com.example.vaccineapp;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
@@ -16,8 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(itemSelect);
     }
@@ -30,11 +29,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_profile:
                     Toast.makeText(getApplicationContext(),"Profile",Toast.LENGTH_LONG).show();
-
                     break;
                 case R.id.nav_settings:
                     Toast.makeText(getApplicationContext(),"Setting",Toast.LENGTH_LONG).show();
-
                     break;
             }
             return false;
@@ -61,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToAppointment(View v){
         Toast.makeText(getApplicationContext(),"Change to 'Appointments' screen",Toast.LENGTH_LONG).show();
-        //Intent intent = new Intent(this, MainActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, Appointments.class);
+        startActivity(intent);
     }
 
     public void changeToEmergency(View v){

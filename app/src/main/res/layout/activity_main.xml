@@ -1,76 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
     android:visibility="visible">
-
-    <ImageButton
-        android:id="@+id/btn"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/button_styles"
-        android:contentDescription="@string/btn_toEmergency"
-        android:onClick="changeToEmergency"
-        android:padding="10dp"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn3"
-        app:srcCompat="@drawable/ambulanceicon" />
-
-    <ImageButton
-        android:id="@+id/btnFindDoctor6"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:background="@drawable/button_styles"
-        android:contentDescription="@string/btn_toMedicalshop"
-        android:onClick="changeToMedicalShop"
-        android:padding="10dp"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnFindDoctor4"
-        app:srcCompat="@drawable/medicalshopicon" />
-
-    <ImageButton
-        android:id="@+id/btn3"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/button_styles"
-        android:contentDescription="@string/btn_toaAppointments"
-        android:onClick="changeToHistorical"
-        android:padding="10dp"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnFindDoctor"
-        app:srcCompat="@drawable/medicalkiticon" />
-
-    <ImageButton
-        android:id="@+id/btnFindDoctor4"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:background="@drawable/button_styles"
-        android:contentDescription="@string/btn_toHistorical"
-        android:onClick="changeToAppointment"
-        android:padding="10dp"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnHospital"
-        app:srcCompat="@drawable/appointmenticon" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -88,68 +23,148 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:src="@drawable/logof"
                 android:layout_width="60dp"
-                android:layout_height="60dp" />
+                android:layout_height="60dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/logof" />
 
-            <LinearLayout
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="70dp"
-                    android:text="VaccineApp"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:textColor="#fff" />
-
-
-            </LinearLayout>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:text="@string/app_name"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#fff" />
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="30dp"
+        android:paddingBottom="10dp"
+        android:weightSum="3">
+
+        <ImageButton
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_styles"
+            android:contentDescription="@string/btn_toEmergency"
+            android:onClick="changeToFindDoctors"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/doctoricon" />
+
+        <Space
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_styles"
+            android:contentDescription="@string/btn_toMedicalshop"
+            android:onClick="changeToHospitals"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hospitalicon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="3">
+
+        <ImageButton
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_styles"
+            android:contentDescription="@string/btn_toEmergency"
+            android:onClick="changeToHistorical"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/medicalkiticon" />
+
+        <Space
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_styles"
+            android:contentDescription="@string/btn_toMedicalshop"
+            android:onClick="changeToAppointment"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/appointmenticon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="3">
+
+        <ImageButton
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_styles"
+            android:contentDescription="@string/btn_toEmergency"
+            android:onClick="changeToEmergency"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ambulanceicon" />
+
+        <Space
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_styles"
+            android:contentDescription="@string/btn_toMedicalshop"
+            android:onClick="changeToMedicalShop"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/medicalshopicon" />
+    </LinearLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         app:itemIconSize="40dp"
         app:itemIconTint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation" />
 
-    <ImageButton
-        android:id="@+id/btnFindDoctor"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button_styles"
-        android:contentDescription="@string/btn_toDoctor"
-        android:onClick="changeToFindDoctors"
-        android:padding="10dp"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/doctoricon" />
-
-    <ImageButton
-        android:id="@+id/btnHospital"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:background="@drawable/button_styles"
-        android:contentDescription="@string/btn_toHospital"
-        android:onClick="changeToHospitals"
-        android:padding="10dp"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/hospitalicon" />
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

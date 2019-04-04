@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">VaccineApp</string>
+    <string name="icon">Icon of the application</string>
+    <!-- Main Activity -->
     <!-- Content descriptions for main buttons -->
     <string name="btn_toDoctor">Button to find a doctor</string>
     <string name="btn_toHospital">Button to find a hospital</string>
@@ -7,4 +9,9 @@
     <string name="btn_toHistorical">Button to find see historical</string>
     <string name="btn_toEmergency">Button to call an ambulance</string>
     <string name="btn_toMedicalshop">Button to see a medical shop</string>
+
+    <!-- Appointments activity -->
+    <string name="left_arrow">Button to see previous profile name and color</string>
+    <string name="right_arrow">Button to see next profile name and color</string>
+
 </resources>
