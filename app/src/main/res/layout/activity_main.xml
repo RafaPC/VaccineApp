@@ -72,7 +72,7 @@
         app:srcCompat="@drawable/appointmenticon" />
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+        android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:itemIconSize="40dp"
