@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">VaccineApp</string>
+    <!-- Content descriptions for main buttons -->
+    <string name="btn_toDoctor">Button to find a doctor</string>
+    <string name="btn_toHospital">Button to find a hospital</string>
+    <string name="btn_toaAppointments">Button to see appointments</string>
+    <string name="btn_toHistorical">Button to find see historical</string>
+    <string name="btn_toEmergency">Button to call an ambulance</string>
+    <string name="btn_toMedicalshop">Button to see a medical shop</string>
 </resources>
