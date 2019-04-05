@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(itemSelect);
     }
-    private BottomNavigationView.OnNavigationItemSelectedListener itemSelect= new BottomNavigationView.OnNavigationItemSelectedListener() {
+     private BottomNavigationView.OnNavigationItemSelectedListener itemSelect= new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             switch (menuItem.getItemId()){
@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_LONG).show();
                     break;
                 case R.id.nav_profile:
-                    Toast.makeText(getApplicationContext(),"Profile",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"Profile",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.nav_settings:
                     Toast.makeText(getApplicationContext(),"Setting",Toast.LENGTH_LONG).show();
@@ -40,14 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToFindDoctors(View v){
         Toast.makeText(getApplicationContext(),"Change to 'Find Doctors' screen",Toast.LENGTH_LONG).show();
-        //Intent intent = new Intent(this, MainActivity.class);
-        //startActivity(intent);
+
     }
 
     public void changeToHospitals(View v){
         Toast.makeText(getApplicationContext(),"Change to 'Hospitals' screen",Toast.LENGTH_LONG).show();
-        //Intent intent = new Intent(this, MainActivity.class);
-        //startActivity(intent);
+
     }
 
     public void changeToHistorical(View v){
