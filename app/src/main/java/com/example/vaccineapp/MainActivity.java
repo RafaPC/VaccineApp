@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    Intent intent=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,56 +21,59 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(itemSelect);
     }
-     private BottomNavigationView.OnNavigationItemSelectedListener itemSelect= new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+    private BottomNavigationView.OnNavigationItemSelectedListener itemSelect = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            switch (menuItem.getItemId()){
+            switch (menuItem.getItemId()) {
                 case R.id.nav_home:
-                    Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
+                    //intent = new Intent(getApplicationContext(), MainActivity.class);
+                    //startActivity(intent);
                     break;
                 case R.id.nav_profile:
                     //Toast.makeText(getApplicationContext(),"Profile",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                    intent = new Intent(getApplicationContext(), SignInActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_settings:
-                    Toast.makeText(getApplicationContext(),"Setting",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_LONG).show();
                     break;
             }
             return false;
         }
     };
 
-    public void changeToFindDoctors(View v){
-        Toast.makeText(getApplicationContext(),"Change to 'Find Doctors' screen",Toast.LENGTH_LONG).show();
+    public void changeToFindDoctors(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Find Doctors' screen", Toast.LENGTH_LONG).show();
 
     }
 
-    public void changeToHospitals(View v){
-        Toast.makeText(getApplicationContext(),"Change to 'Hospitals' screen",Toast.LENGTH_LONG).show();
+    public void changeToHospitals(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Hospitals' screen", Toast.LENGTH_LONG).show();
 
     }
 
-    public void changeToHistorical(View v){
-        Toast.makeText(getApplicationContext(),"Change to 'Historical or something' screen",Toast.LENGTH_LONG).show();
+    public void changeToHistorical(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Historical or something' screen", Toast.LENGTH_LONG).show();
         //Intent intent = new Intent(this, MainActivity.class);
         //startActivity(intent);
     }
 
-    public void changeToAppointment(View v){
-        Toast.makeText(getApplicationContext(),"Change to 'Appointments' screen",Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, Appointments.class);
+    public void changeToAppointment(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Appointments' screen", Toast.LENGTH_LONG).show();
+        intent = new Intent(this, Appointments.class);
         startActivity(intent);
     }
 
-    public void changeToEmergency(View v){
-        Toast.makeText(getApplicationContext(),"Change to 'Emergency' screen",Toast.LENGTH_LONG).show();
+    public void changeToEmergency(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Emergency' screen", Toast.LENGTH_LONG).show();
         //Intent intent = new Intent(this, MainActivity.class);
         //startActivity(intent);
     }
 
-    public void changeToMedicalShop(View v){
-        Toast.makeText(getApplicationContext(),"Change to 'Medical Shop' screen",Toast.LENGTH_LONG).show();
+    public void changeToMedicalShop(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Medical Shop' screen", Toast.LENGTH_LONG).show();
         //Intent intent = new Intent(this, MainActivity.class);
         //startActivity(intent);
     }
