@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class SignInActivity extends AppCompatActivity {
 
-    Intent intent=null;
+    Intent intent = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +46,14 @@ public class SignInActivity extends AppCompatActivity {
 
     public void createAccount(View v) {
         Toast.makeText(getApplicationContext(), "Change to 'create Account' screen", Toast.LENGTH_LONG).show();
-
+        Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+        startActivity(intent);
     }
 
     public void forgetPass(View v) {
         Toast.makeText(getApplicationContext(), "Change to 'Forget Password' screen", Toast.LENGTH_LONG).show();
-
+        Intent intent = new Intent(getApplicationContext(), ForgotPasswordActivity.class);
+        startActivity(intent);
     }
 
 }
