@@ -1,17 +1,25 @@
 package com.example.vaccineapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class SignInActivity extends AppCompatActivity {
 
-    Intent intent=null;
+    Intent intent = null;
+    String email = "connect@gmail.com";
+    String pass = "connect";
+    TextInputEditText textEmail, textPass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +27,37 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(itemSelect);
+        Button btnSignIn = findViewById(R.id.btnsignIn);
+
+        textEmail = findViewById(R.id.textEmail);
+        textPass = findViewById(R.id.textPass);
+
+
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (textEmail.getText().toString().equals(email) && textPass.getText().toString().equals(pass)) {
+                    //Toast.makeText(getApplicationContext(), "OJ", Toast.LENGTH_LONG).show();
+
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+
+
+                } else  {
+                    if (textEmail.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "Empty Email", Toast.LENGTH_LONG).show();
+                    }
+                    else if (textPass.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "Empty Email", Toast.LENGTH_LONG).show();
+
+                    }
+
+                }
+            }
+        });
 
     }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener itemSelect = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
