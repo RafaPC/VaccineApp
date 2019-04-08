@@ -26,9 +26,9 @@ public class AppointmentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_appointments);
         this.profileName = findViewById(R.id.profile_name);
         this.profiles = new ArrayList<>();
-        this.profiles.add(new Profile("Me", Color.BLUE));
-        this.profiles.add(new Profile("Child 2", Color.RED));
-        this.profiles.add(new Profile("Child 3", Color.GREEN));
+        this.profiles.add(new Profile("Me", Color.BLUE, ""));
+        this.profiles.add(new Profile("Child 2", Color.RED, ""));
+        this.profiles.add(new Profile("Child 3", Color.GREEN, ""));
         this.colorContainer = findViewById(R.id.circlePlace);
         changeProfile(3);
 

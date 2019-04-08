@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Intent intent=null;
+    Intent intent = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +70,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToFindDoctors(View v) {
         Toast.makeText(getApplicationContext(), "Change to 'Find Doctors' screen", Toast.LENGTH_LONG).show();
-
+        //Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
     }
 
     public void changeToFindHospitals(View v) {
         Toast.makeText(getApplicationContext(), "Change to 'Hospitals' screen", Toast.LENGTH_LONG).show();
-
+        Intent intent = new Intent(this, ProfilesListActivity.class);
+        startActivity(intent);
     }
 
 }

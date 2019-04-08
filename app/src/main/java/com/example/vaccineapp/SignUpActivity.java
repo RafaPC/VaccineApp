@@ -67,7 +67,6 @@ public class SignUpActivity extends AppCompatActivity {
         } else if (password2.length() == 0) {
             Functions.showToast(getApplicationContext(), "You must confirm the password");
         } else if (!password1.equals(password2)) {
-            Log.d("Passwords", "Pass1: " + password1 + "  Pass2: " + password2 );
             Functions.showToast(getApplicationContext(), "Passwords must match");
         } else {
             error = false;
