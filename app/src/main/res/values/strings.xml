@@ -10,7 +10,7 @@
     <string name="btn_toEmergency">Button to call an ambulance</string>
     <string name="btn_toMedicalshop">Button to see a medical shop</string>
 
-    <!-- Appointments activity -->
+    <!-- AppointmentsActivity activity -->
     <string name="left_arrow">Button to see previous profile name and color</string>
     <string name="right_arrow">Button to see next profile name and color</string>
 

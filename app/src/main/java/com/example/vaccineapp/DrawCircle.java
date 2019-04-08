@@ -19,7 +19,7 @@ public class DrawCircle extends View {
         @Override
         protected void onDraw(Canvas canvas) {
             //canvas.drawColor(Color.BLUE);
-            canvas.drawCircle(50, 50, 40, paint);
+            canvas.drawCircle(50, 100, 40, paint);
         }
 
 }
