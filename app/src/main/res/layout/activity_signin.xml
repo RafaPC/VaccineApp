@@ -55,6 +55,7 @@
         android:textSize="18sp" />
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_input_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,7 +64,7 @@
         android:layout_marginRight="30dp">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/textEmail"
+            android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="E-mail*"
@@ -71,6 +72,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_input_password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,6 +83,7 @@
         android:layout_marginBottom="30dp">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password*"
@@ -103,24 +106,25 @@
             android:text="Remember" />
 
         <TextView
-            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="30dp"
             android:autoLink="all"
             android:clickable="true"
-            android:onClick="forgetPass"
-            android:text="Forget Password?"
+            android:onClick="forgotPass"
+            android:text="Forgot Password?"
             android:textColor="@color/design_default_color_primary_dark" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnsignIn"
+        android:id="@+id/btn_signIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:background="@drawable/gradiant_bar"
+        android:background="@drawable/gradiant_bar_disabled"
+        android:enabled="false"
+        android:onClick="login"
         android:text="SIGN IN"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
@@ -128,7 +132,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"

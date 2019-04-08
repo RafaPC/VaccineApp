@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ForgotPasswordActivity"></activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".Appointments" />
+        <activity android:name=".AppointmentsActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -3,7 +3,6 @@ package com.example.vaccineapp;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -44,38 +43,39 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public void changeToFindDoctors(View v) {
-        Toast.makeText(getApplicationContext(), "Change to 'Find Doctors' screen", Toast.LENGTH_LONG).show();
-
+    public void changeToFindVaccine(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Find Vaccine' screen", Toast.LENGTH_LONG).show();
+        //Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
     }
 
-    public void changeToHospitals(View v) {
-        Toast.makeText(getApplicationContext(), "Change to 'Hospitals' screen", Toast.LENGTH_LONG).show();
-
-    }
-
-    public void changeToHistorical(View v) {
-        Toast.makeText(getApplicationContext(), "Change to 'Historical or something' screen", Toast.LENGTH_LONG).show();
+    public void changeToHealthStates(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Health States' screen", Toast.LENGTH_LONG).show();
         //Intent intent = new Intent(this, MainActivity.class);
         //startActivity(intent);
     }
 
     public void changeToAppointment(View v) {
-        Toast.makeText(getApplicationContext(), "Change to 'Appointments' screen", Toast.LENGTH_LONG).show();
-        intent = new Intent(this, Appointments.class);
+        Toast.makeText(getApplicationContext(), "Change to 'AppointmentsActivity' screen", Toast.LENGTH_LONG).show();
+        intent = new Intent(this, AppointmentsActivity.class);
         startActivity(intent);
     }
 
-    public void changeToEmergency(View v) {
-        Toast.makeText(getApplicationContext(), "Change to 'Emergency' screen", Toast.LENGTH_LONG).show();
+    public void changeToScheduler(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Scheduler' screen", Toast.LENGTH_LONG).show();
         //Intent intent = new Intent(this, MainActivity.class);
         //startActivity(intent);
     }
 
-    public void changeToMedicalShop(View v) {
-        Toast.makeText(getApplicationContext(), "Change to 'Medical Shop' screen", Toast.LENGTH_LONG).show();
-        //Intent intent = new Intent(this, MainActivity.class);
-        //startActivity(intent);
+
+    public void changeToFindDoctors(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Find Doctors' screen", Toast.LENGTH_LONG).show();
+
+    }
+
+    public void changeToFindHospitals(View v) {
+        Toast.makeText(getApplicationContext(), "Change to 'Hospitals' screen", Toast.LENGTH_LONG).show();
+
     }
 
 }
