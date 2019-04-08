@@ -158,7 +158,8 @@
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradiant_bar"
+            android:background="@drawable/gradiant_bar_disabled"
+            android:enabled="false"
             android:onClick="signUp"
             android:text="Sign up"
             android:textColor="@android:color/white" />

@@ -33,8 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="50dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="70dp"
                 android:text="@string/app_name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="#fff" />

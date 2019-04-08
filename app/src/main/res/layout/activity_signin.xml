@@ -33,8 +33,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="70dp"
-                    android:text="VaccineApp"
+                    android:layout_gravity="center"
+                    android:paddingLeft="90dp"
+                    android:text="VaXXin"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                     android:textColor="#fff" />
 
@@ -63,7 +64,7 @@
         android:layout_marginRight="30dp">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/textEmail"
+            android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="E-mail*"
@@ -81,7 +82,7 @@
         android:layout_marginBottom="30dp">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/textpass"
+            android:id="@+id/inputPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password*"
@@ -96,7 +97,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <CheckBox
-            android:id="@+id/cbRemember"
+            android:id="@+id/checkRemember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -104,24 +105,25 @@
             android:text="Remember" />
 
         <TextView
-            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="30dp"
             android:autoLink="all"
             android:clickable="true"
-            android:onClick="forgetPass"
-            android:text="Forget Password?"
+            android:onClick="forgotPass"
+            android:text="Forgot Password?"
             android:textColor="@color/design_default_color_primary_dark" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnsignIn"
+        android:id="@+id/btnSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:background="@drawable/gradiant_bar"
+        android:background="@drawable/gradiant_bar_disabled"
+        android:enabled="false"
+        android:onClick="login"
         android:text="SIGN IN"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
@@ -136,13 +138,11 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't Have Account?" />
 
         <TextView
-            android:id="@+id/txCreateAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
