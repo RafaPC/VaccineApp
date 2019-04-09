@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradiant_bar_vertical"
+    android:orientation="vertical"
+    android:paddingTop="25dp"
+    android:visibility="visible">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Max Mustermann"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="39dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/profile_info_background"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <ImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/doctoricon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/all_borders"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Age"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="30" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/all_borders"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Kids"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textKidsNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/all_borders"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Birth"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textBirth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="09-20-1974" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/information"
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/listInformation"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_styles"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/buttonLeft"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gradiant_bar"
+                app:srcCompat="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"></LinearLayout>
+
+            <ImageButton
+                android:id="@+id/buttonRight"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gradiant_bar"
+                app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

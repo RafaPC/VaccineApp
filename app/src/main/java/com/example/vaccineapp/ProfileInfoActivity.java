@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileInfoActivity extends AppCompatActivity {
     private TextView textName;
     private ImageView imageProfile;
     private TextView textAge;
@@ -27,7 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_profile_info);
         this.textName = findViewById(R.id.textAge);
         this.imageProfile = findViewById(R.id.imageProfile);
         this.textAge = findViewById(R.id.textAge);

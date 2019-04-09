@@ -37,103 +37,87 @@
             android:layout_height="80dp"
             app:srcCompat="@drawable/doctoricon" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/all_borders"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="Age"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textAge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="30" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/all_borders"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="Kids"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textKidsNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="2" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/all_borders"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="Birth"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textBirth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="09-20-1974" />
-            </LinearLayout>
-        </LinearLayout>
-
         <TextView
-            android:id="@+id/textInformation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="@string/information"
+            android:text="@string/reminders"
             android:textSize="20sp" />
 
-        <ScrollView
-            android:id="@+id/scrollInformation"
+        <ListView
+            android:id="@+id/listInformation"
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/button_styles">
+        </ListView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_styles"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                app:srcCompat="@drawable/clock_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:text="Timeline" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                app:srcCompat="@drawable/baseline_arrow_forward_ios_24" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_styles"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="4dp"
+                app:srcCompat="@drawable/clock_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:text="Profile Information" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                app:srcCompat="@drawable/baseline_arrow_forward_ios_24" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

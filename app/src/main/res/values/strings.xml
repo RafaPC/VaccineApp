@@ -17,5 +17,6 @@
 
     <!-- ProfileActivity -->
     <string name="information"><b><u>Information:</u></b></string>
+    <string name="reminders"><b><u>Reminders</u></b></string>
 
 </resources>
