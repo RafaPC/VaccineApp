@@ -30,5 +30,9 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.daimajia.easing:library:2.0@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
-
+    implementation 'com.github.vipulasri:timelineview:1.1.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.github.vipulasri:timelineview:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
