@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToFindDoctors(View v) {
         Toast.makeText(getApplicationContext(), "Change to 'Find Doctors' screen", Toast.LENGTH_LONG).show();
-        //Intent intent = new Intent(this, MainActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     public void changeToFindHospitals(View v) {

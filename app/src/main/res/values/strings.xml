@@ -14,4 +14,8 @@
     <string name="left_arrow">Button to see previous profile name and color</string>
     <string name="right_arrow">Button to see next profile name and color</string>
 
+
+    <!-- ProfileActivity -->
+    <string name="information"><b><u>Information:</u></b></string>
+
 </resources>
