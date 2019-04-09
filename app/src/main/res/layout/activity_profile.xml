@@ -159,7 +159,8 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/gradiant_bar"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
         </android.support.constraint.ConstraintLayout>
 
