@@ -28,7 +28,7 @@ public class ProfileInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_info);
-        this.textName = findViewById(R.id.textAge);
+        this.textName = findViewById(R.id.textName);
         this.imageProfile = findViewById(R.id.imageProfile);
         this.textAge = findViewById(R.id.textAge);
         this.textKidsNumber = findViewById(R.id.textKidsNumber);

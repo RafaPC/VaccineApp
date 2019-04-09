@@ -10,7 +10,7 @@
     android:visibility="visible">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -126,35 +126,46 @@
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/button_styles"/>
+            android:background="@drawable/button_styles" />
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
             <ImageButton
                 android:id="@+id/buttonLeft"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/gradiant_bar"
-                app:srcCompat="@drawable/ic_keyboard_arrow_left_black_24dp" />
+                android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"></LinearLayout>
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonRight"
+                app:layout_constraintStart_toEndOf="@+id/buttonLeft"></LinearLayout>
 
             <ImageButton
                 android:id="@+id/buttonRight"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/gradiant_bar"
-                app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 
