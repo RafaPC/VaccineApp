@@ -1,14 +1,9 @@
-package com.example.vaccineapp;
+package com.example.vaccineapp.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.vaccineapp.Classes.Profile;
+import com.example.vaccineapp.R;
 
 import java.util.ArrayList;
 

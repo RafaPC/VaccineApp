@@ -1,7 +1,6 @@
-package com.example.vaccineapp;
+package com.example.vaccineapp.Activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,9 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.example.vaccineapp.Classes.InfoElement;
+import com.example.vaccineapp.R;
+import com.example.vaccineapp.Classes.TimelineStage;
 
-import androidx.annotation.Nullable;
+import java.util.ArrayList;
 
 public class TimeLineActivity extends AppCompatActivity {
 

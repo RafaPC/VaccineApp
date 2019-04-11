@@ -10,16 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileInfoActivity"/>
-        <activity android:name=".TimeLineActivity"/>
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".ProfilesListActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".AppointmentsActivity" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".Activities.ProfileInfoActivity"/>
+        <activity android:name=".Activities.TimeLineActivity"/>
+        <activity android:name=".Activities.ProfileActivity" />
+        <activity android:name=".Activities.ProfilesListActivity" />
+        <activity android:name=".Activities.ForgotPasswordActivity" />
+        <activity android:name=".Activities.SignUpActivity" />
+        <activity android:name=".Activities.AppointmentsActivity" />
+        <activity android:name=".Activities.SignInActivity" />
+        <activity android:name=".Activities.TimeLineActivity"/>
+        <activity android:name=".Activities.MainActivity" />
+
+        <activity android:name=".Activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

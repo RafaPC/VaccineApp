@@ -1,11 +1,10 @@
-package com.example.vaccineapp;
+package com.example.vaccineapp.Activities;
 
 import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -17,6 +16,9 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.vaccineapp.Classes.InfoElement;
+import com.example.vaccineapp.Classes.Profile;
+import com.example.vaccineapp.R;
 
 import java.util.ArrayList;
 

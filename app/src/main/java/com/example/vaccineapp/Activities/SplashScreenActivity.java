@@ -1,10 +1,12 @@
-package com.example.vaccineapp;
+package com.example.vaccineapp.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.vaccineapp.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

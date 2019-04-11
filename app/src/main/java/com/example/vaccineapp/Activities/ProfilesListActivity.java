@@ -1,4 +1,4 @@
-package com.example.vaccineapp;
+package com.example.vaccineapp.Activities;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.vaccineapp.Classes.Functions;
+import com.example.vaccineapp.Classes.Profile;
+import com.example.vaccineapp.R;
 
 import java.util.ArrayList;
 

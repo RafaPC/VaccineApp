@@ -1,4 +1,4 @@
-package com.example.vaccineapp;
+package com.example.vaccineapp.Classes;
 
 import android.content.Context;
 import android.graphics.Canvas;

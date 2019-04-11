@@ -1,4 +1,4 @@
-package com.example.vaccineapp;
+package com.example.vaccineapp.Activities;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.vaccineapp.Classes.DrawCircle;
+import com.example.vaccineapp.Classes.Profile;
+import com.example.vaccineapp.R;
 
 import java.util.ArrayList;
 import java.util.List;

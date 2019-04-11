@@ -1,4 +1,6 @@
-package com.example.vaccineapp;
+package com.example.vaccineapp.Classes;
+
+import com.example.vaccineapp.R;
 
 public class InfoElement {
 

@@ -1,4 +1,4 @@
-package com.example.vaccineapp;
+package com.example.vaccineapp.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.vaccineapp.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,6 @@
-package com.example.vaccineapp;
+package com.example.vaccineapp.Classes;
+
+import com.example.vaccineapp.Classes.InfoElement;
 
 import java.util.ArrayList;
 
