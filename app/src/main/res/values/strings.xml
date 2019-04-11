@@ -18,5 +18,5 @@
     <!-- ProfileActivity -->
     <string name="information"><b><u>Information:</u></b></string>
     <string name="reminders"><b><u>Reminders</u></b></string>
-
+    <string name="timeline"><b><u>Timeline</u></b></string>
 </resources>

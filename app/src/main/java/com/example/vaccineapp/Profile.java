@@ -7,7 +7,7 @@ public class Profile {
     private int color;
     private String birthdate;
     private ArrayList<String> information;
-    private ArrayList<Reminder> reminders;
+    private ArrayList<InfoElement> reminders;
 
     public Profile(String name, int color, String birthdate) {
         this.name = name;
@@ -37,11 +37,11 @@ public class Profile {
     }
 
 
-    public void addReminder(Reminder reminder) {
+    public void addReminder(InfoElement reminder) {
         this.reminders.add(reminder);
     }
 
-    public ArrayList<Reminder> getReminders(){
+    public ArrayList<InfoElement> getReminders(){
         return this.reminders;
     }
 }

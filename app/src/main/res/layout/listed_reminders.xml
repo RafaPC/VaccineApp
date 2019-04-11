@@ -8,8 +8,7 @@
         android:id="@+id/imgReminder"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/warning_red" />
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/textReminder"

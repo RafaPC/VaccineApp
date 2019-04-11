@@ -1,14 +1,11 @@
 package com.example.vaccineapp;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -58,7 +55,7 @@ public class ProfilesListActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup container) {
             if (convertView == null) {
-                convertView = getLayoutInflater().inflate(R.layout.listed_profile_info, container, false);
+                convertView = getLayoutInflater().inflate(R.layout.listed_profiles, container, false);
             }
             LinearLayout profileInfoView = (LinearLayout) convertView;
             Profile profile = this.profiles.get(position);
