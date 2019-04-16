@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.vaccineapp">
 
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,17 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ProfileInfoActivity"/>
-        <activity android:name=".Activities.TimeLineActivity"/>
+        <activity android:name=".Activities.AppointmentDetails" />
+        <activity android:name=".Activities.ProfileInfoActivity" />
+        <activity android:name=".Activities.TimeLineActivity" />
         <activity android:name=".Activities.ProfileActivity" />
         <activity android:name=".Activities.ProfilesListActivity" />
         <activity android:name=".Activities.ForgotPasswordActivity" />
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.AppointmentsActivity" />
         <activity android:name=".Activities.SignInActivity" />
-        <activity android:name=".Activities.TimeLineActivity"/>
         <activity android:name=".Activities.MainActivity" />
-
         <activity android:name=".Activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

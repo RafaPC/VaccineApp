@@ -1,61 +1,44 @@
 package com.example.vaccineapp.Activities;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.vaccineapp.Classes.InfoElement;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+import com.example.vaccineapp.model.InfoElement;
 import com.example.vaccineapp.R;
-import com.example.vaccineapp.Classes.TimelineStage;
+import com.example.vaccineapp.model.ProfilesManager;
+import com.example.vaccineapp.model.TimelineStage;
 
 import java.util.ArrayList;
 
 public class TimeLineActivity extends AppCompatActivity {
-
+    private TextView textName;
     private ListView listTimeline;
-    private ArrayList<TimelineStage> arrayTimeline;
+    private ImageButton buttonPrev;
+    private ImageButton buttonNext;
+    private LinearLayout layoutProfile;
+    private TimelineAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+        this.textName = findViewById(R.id.textName);
         this.listTimeline = findViewById(R.id.listTimeline);
-        this.arrayTimeline = new ArrayList<>();
-
-        TimelineStage stage1 = new TimelineStage();
-        stage1.addInfoElement(new InfoElement("At Birth", 1));
-        stage1.addInfoElement(new InfoElement("HepB", 1));
-        this.arrayTimeline.add(stage1);
-
-        TimelineStage stage2 = new TimelineStage();
-        stage2.addInfoElement(new InfoElement("1-2 Months", 1));
-        stage2.addInfoElement(new InfoElement("HelpB", 1));
-        this.arrayTimeline.add(stage2);
-
-        TimelineStage stage3 = new TimelineStage();
-        stage3.addInfoElement(new InfoElement("2 Months", -1));
-        stage3.addInfoElement(new InfoElement("DtaP: Diphtheria, Tetanus, acellualr pertussis", 1));
-        stage3.addInfoElement(new InfoElement("Hib: Haemophilus influenza type B", 1));
-        stage3.addInfoElement(new InfoElement("IPV: inactivated pollovirus", -2));
-        stage3.addInfoElement(new InfoElement("PCV: Pneumoccal conjugate", -2));
-        stage3.addInfoElement(new InfoElement("RV: Rotavirus", -2));
-        this.arrayTimeline.add(stage3);
-
-        TimelineStage stage4 = new TimelineStage();
-        stage4.addInfoElement(new InfoElement("4 Months", -1));
-        stage4.addInfoElement(new InfoElement("HepB", -1));
-        this.arrayTimeline.add(stage4);
-
-
-        this.listTimeline.setAdapter(new TimeLineActivity.TimelineAdapter(this.arrayTimeline));
-        Log.d("TIMELINE", "Aqui llega");
+        this.buttonPrev = findViewById(R.id.buttonPrev);
+        this.buttonNext = findViewById(R.id.buttonNext);
+        this.layoutProfile = findViewById(R.id.layoutProfile);
     }
 
 
@@ -114,4 +97,81 @@ public class TimeLineActivity extends AppCompatActivity {
             return stageInfoView;
         }
     }
+
+    protected void updateProfile() {
+        this.textName.setText(ProfilesManager.getProfile().getName());
+        this.adapter = new TimelineAdapter(ProfilesManager.getProfile().getTimeline());
+        this.listTimeline.setAdapter(this.adapter);
+        ProfilesManager.updateButtons(this.buttonNext, this.buttonPrev);
+        this.listTimeline.setSelection(this.adapter.getCount() - 1);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateProfile();
+    }
+
+    public void previousProfile(View view) {
+        ProfilesManager.indexProfile--;
+        YoYo.with(Techniques.SlideOutRight)
+                .duration(175)
+                .withListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        updateProfile();
+                        YoYo.with(Techniques.SlideInLeft)
+                                .duration(175)
+                                .playOn(findViewById(R.id.layoutProfile));
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                })
+                .playOn(this.layoutProfile);
+    }
+
+    public void nextProfile(View view) {
+        ProfilesManager.indexProfile++;
+        YoYo.with(Techniques.SlideOutLeft)
+                .duration(175)
+                .withListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        updateProfile();
+                        YoYo.with(Techniques.SlideInRight)
+                                .duration(175)
+                                .playOn(findViewById(R.id.layoutProfile));
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                })
+                .playOn(this.layoutProfile);
+    }
+
 }

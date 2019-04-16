@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.vaccineapp.Classes.Functions;
+import com.example.vaccineapp.model.Functions;
 import com.example.vaccineapp.R;
 
 public class SignInActivity extends AppCompatActivity {
@@ -105,10 +105,10 @@ public class SignInActivity extends AppCompatActivity {
     private void checkInputs() {
         boolean error = false;
         if (this.inputEmail.getText().length() > 0 && this.inputPassword.getText().length() > 0) {
-            this.signInButton.setBackgroundResource(R.drawable.gradiant_bar);
+            this.signInButton.setBackgroundResource(R.drawable.button_gradient);
             this.signInButton.setEnabled(true);
         } else {
-            this.signInButton.setBackgroundResource(R.drawable.gradiant_bar_disabled);
+            this.signInButton.setBackgroundResource(R.drawable.button_gradient_disabled);
             this.signInButton.setEnabled(false);
         }
     }
@@ -119,6 +119,9 @@ public class SignInActivity extends AppCompatActivity {
         String email = "" + ((TextView)this.inputEmail).getText();
         if (Functions.validateEmail(email)) {
             Functions.showToast(getApplicationContext(), "Valid email");
+                Intent intent = new Intent(getApplicationContext(), ProfilesListActivity.class);
+                startActivity(intent);
+
         }else{
             Functions.showToast(getApplicationContext(), "Invalid email");
         }

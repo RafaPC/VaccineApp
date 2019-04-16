@@ -121,7 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:background="@drawable/gradiant_bar_disabled"
+        android:background="@drawable/button_gradient_disabled"
         android:enabled="false"
         android:onClick="login"
         android:text="SIGN IN"
@@ -131,7 +131,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,4 +1,4 @@
-package com.example.vaccineapp.Classes;
+package com.example.vaccineapp.model;
 
 import android.content.Context;
 import android.widget.Toast;

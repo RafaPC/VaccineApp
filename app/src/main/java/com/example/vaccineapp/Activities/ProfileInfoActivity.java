@@ -1,19 +1,22 @@
 package com.example.vaccineapp.Activities;
 
+import android.animation.Animator;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.vaccineapp.Classes.Profile;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.model.ProfilesManager;
 
 import java.util.ArrayList;
 
@@ -24,36 +27,27 @@ public class ProfileInfoActivity extends AppCompatActivity {
     private TextView textKidsNumber;
     private TextView textBirth;
     private ListView listInformation;
+    private ImageButton buttonPrev;
+    private ImageButton buttonNext;
+    private LinearLayout layoutProfile;
+    Intent intent = null;
 
-    private Profile profile;
-    private ArrayList<String> informations;
-    Intent intent=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_info);
+        this.layoutProfile = findViewById(R.id.layoutProfile);
+        this.buttonNext = findViewById(R.id.buttonNext);
+        this.buttonPrev = findViewById(R.id.buttonPrev);
         this.textName = findViewById(R.id.textName);
         this.imageProfile = findViewById(R.id.imageProfile);
         this.textAge = findViewById(R.id.textAge);
         this.textKidsNumber = findViewById(R.id.textKidsNumber);
         this.textBirth = findViewById(R.id.textBirth);
         this.listInformation = findViewById(R.id.listInformation);
-        this.informations = new ArrayList<>();
-        this.informations.add("Pre-pregnant");
-        this.informations.add("Pre-somethingElse");
-        this.informations.add("Erik just spilled his sparkling water all over his laptop");
-        this.profile = new Profile("Hatty Hattingtong", Color.CYAN,"09-08-1983");
-        this.profile.addInformation("Pregnant");
-
-        this.textName.setText(this.profile.getName());
-        this.textAge.setText("33");
-        this.textKidsNumber.setText("2");
-        this.textBirth.setText(this.profile.getBirthdate());
-
-        this.listInformation.setAdapter(new ProfileInfoActivity.MiAdaptador(this.informations));
     }
 
-    private class MiAdaptador extends BaseAdapter {
+    private class InfoAdapter extends BaseAdapter {
 
         private ArrayList<String> informations;
 
@@ -72,7 +66,7 @@ public class ProfileInfoActivity extends AppCompatActivity {
             return 0;
         }
 
-        public MiAdaptador(ArrayList<String> informations){
+        public InfoAdapter(ArrayList<String> informations) {
             this.informations = informations;
         }
 
@@ -96,5 +90,83 @@ public class ProfileInfoActivity extends AppCompatActivity {
 
             return informationInfoView;
         }
+    }
+
+    public void updateProfile() {
+        this.textName.setText(ProfilesManager.getProfile().getName());
+        this.textAge.setText("" + ProfilesManager.getProfile().getAge());
+        this.textKidsNumber.setText("" + ProfilesManager.getProfile().getChildren());
+        this.textBirth.setText(ProfilesManager.getProfile().getBirthdate());
+        this.listInformation.setAdapter(new ProfileInfoActivity.InfoAdapter(ProfilesManager.getProfile().getInformation()));
+        ProfilesManager.updateButtons(this.buttonNext, this.buttonPrev);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateProfile();
+    }
+
+    public void previousProfile(View view) {
+        ProfilesManager.indexProfile--;
+        YoYo.with(Techniques.SlideOutRight)
+                .duration(175)
+                .withListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        updateProfile();
+                        YoYo.with(Techniques.SlideInLeft)
+                                .duration(175)
+                                .playOn(findViewById(R.id.layoutProfile));
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                })
+                .playOn(this.layoutProfile);
+    }
+
+    public void nextProfile(View view) {
+        ProfilesManager.indexProfile++;
+        YoYo.with(Techniques.SlideOutLeft)
+                .duration(175)
+                .withListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        updateProfile();
+                        YoYo.with(Techniques.SlideInRight)
+                                .duration(175)
+                                .playOn(findViewById(R.id.layoutProfile));
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                })
+                .playOn(this.layoutProfile);
     }
 }

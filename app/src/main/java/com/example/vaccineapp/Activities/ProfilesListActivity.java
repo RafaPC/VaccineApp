@@ -1,18 +1,20 @@
 package com.example.vaccineapp.Activities;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.vaccineapp.Classes.Functions;
-import com.example.vaccineapp.Classes.Profile;
+import com.example.vaccineapp.model.Functions;
+import com.example.vaccineapp.model.Profile;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.model.ProfilesManager;
 
 import java.util.ArrayList;
 
@@ -26,14 +28,9 @@ public class ProfilesListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profiles_list);
         this.profilesList = findViewById(R.id.listview_profiles);
-        this.profiles.add(new Profile("Mum", Color.CYAN, "1978/07/12"));
-        this.profiles.add(new Profile("Child 1", Color.CYAN, "2008/03/23"));
-        this.profiles.add(new Profile("Child 2", Color.CYAN, "2013/01/17"));
-
-        this.profilesList.setAdapter(new MiAdaptador(this.profiles));
     }
 
-    private class MiAdaptador extends BaseAdapter {
+    private class ListProfileAdapter extends BaseAdapter {
 
         private ArrayList<Profile> profiles;
 
@@ -52,7 +49,7 @@ public class ProfilesListActivity extends AppCompatActivity {
             return 0;
         }
 
-        public MiAdaptador(ArrayList<Profile> profiles){
+        public ListProfileAdapter(ArrayList<Profile> profiles){
             this.profiles = profiles;
         }
 
@@ -63,19 +60,37 @@ public class ProfilesListActivity extends AppCompatActivity {
             }
             LinearLayout profileInfoView = (LinearLayout) convertView;
             Profile profile = this.profiles.get(position);
-            ((TextView) profileInfoView.findViewById(R.id.profile_name)).setText(profile.getName());
-            ((TextView)profileInfoView.findViewById(R.id.profile_age)).setText(profile.getBirthdate());
-            ((TextView)profileInfoView.findViewById(R.id.profile_info)).setText("Information");
+            ((ImageView) profileInfoView.findViewById(R.id.imgListedProfile)).setImageResource(R.drawable.doctoricon);
+            ((TextView) profileInfoView.findViewById(R.id.textProfileName)).setText(profile.getName());
+            ((TextView)profileInfoView.findViewById(R.id.textProfileAge)).setText(profile.getAge() + " years - " + profile.getBirthdate());
+            ((TextView)profileInfoView.findViewById(R.id.textProfileInfo)).setText("Information");
             profileInfoView.setTag(position);
 
         profileInfoView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Functions.showToast(getApplicationContext(), "Now it shows the profile info of " + ProfilesListActivity.profiles.get((int) v.getTag()).getName());
+            public void onClick(View view) {
+                ProfilesManager.indexProfile = (int) view.getTag();
+                Intent intent = new Intent(ProfilesListActivity.this, ProfileActivity.class);
+                startActivity(intent);
+
             }
         });
 
             return profileInfoView;
         }
+    }
+
+    protected void updateProfile() {
+        this.profilesList.setAdapter(new ListProfileAdapter(ProfilesManager.profiles));
+    }
+
+    public void createProfile(View view){
+        Functions.showToast(getApplicationContext(), "Now the profile creation screen is shown");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateProfile();
     }
 }

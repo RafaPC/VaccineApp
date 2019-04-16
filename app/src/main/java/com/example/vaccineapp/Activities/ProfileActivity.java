@@ -1,13 +1,15 @@
 package com.example.vaccineapp.Activities;
 
 import android.animation.Animator;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,59 +18,44 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.example.vaccineapp.Classes.InfoElement;
-import com.example.vaccineapp.Classes.Profile;
+import com.example.vaccineapp.model.InfoElement;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.model.ProfilesManager;
 
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
-    protected static ArrayList<Profile> profiles;
     private LinearLayout layoutProfile;
     private TextView textName;
     private ImageView imageProfile;
-    private ListView listInformation;
-    private ArrayList<InfoElement> reminders;
     private ListView listReminders;
-    private Profile profile;
-    protected int indexProfile;
     private ImageButton buttonNext;
     private ImageButton buttonPrev;
     Intent intent = null;
+    private static int indexSelectedInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         this.layoutProfile = findViewById(R.id.layoutProfile);
-        this.indexProfile = 0;
-        this.buttonNext = findViewById(R.id.buttonRight);
-        this.buttonPrev = findViewById(R.id.buttonLeft);
-        ProfileActivity.profiles = new ArrayList<>();
-        ProfileActivity.profiles.add(new Profile("Juan Carlos", Color.RED, "12-07-1995"));
-        ProfileActivity.profiles.add(new Profile("Eric Surname", Color.GREEN, "27-03-1994"));
-        ProfileActivity.profiles.add(new Profile("Test", Color.BLUE, "27-03-1994"));
-        this.profile = ProfileActivity.profiles.get(0);
+        this.buttonNext = findViewById(R.id.buttonNext);
+        this.buttonPrev = findViewById(R.id.buttonPrev);
         this.textName = findViewById(R.id.textName);
-        this.reminders = new ArrayList<>();
         this.listReminders = findViewById(R.id.listReminders);
-        this.reminders.add(new InfoElement("Vaccination for death", -2));
-        this.reminders.add(new InfoElement("Vaccination for aids", -2));
-        this.reminders.add(new InfoElement("Vaccination for air allergy", -1));
-        this.listReminders.setAdapter(new ProfileActivity.MiAdaptador(this.reminders));
     }
 
-    public void changeToTimeline(View view){
+    public void changeToTimeline(View view) {
         Intent intent = new Intent(this, TimeLineActivity.class);
         startActivity(intent);
     }
 
-    public void changeToProfileInfo(View view){
+    public void changeToProfileInfo(View view) {
         Intent intent = new Intent(this, ProfileInfoActivity.class);
         startActivity(intent);
     }
 
-    private class MiAdaptador extends BaseAdapter {
+    private class RemindersAdapter extends BaseAdapter {
 
         private ArrayList<InfoElement> reminders;
 
@@ -87,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
             return 0;
         }
 
-        public MiAdaptador(ArrayList<InfoElement> reminders){
+        public RemindersAdapter(ArrayList<InfoElement> reminders) {
             this.reminders = reminders;
         }
 
@@ -100,46 +87,41 @@ public class ProfileActivity extends AppCompatActivity {
             InfoElement reminder = this.reminders.get(position);
             ((TextView) reminderInfoView.findViewById(R.id.textReminder)).setText(reminder.getInformation());
             ((ImageView) reminderInfoView.findViewById(R.id.imgReminder)).setImageResource(reminder.getAlertResource());
+            reminderInfoView.setTag(position);
+            if(ProfilesManager.getProfile().getReminders().get(position).getAlert() != 1){
+                reminderInfoView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ProfileActivity.indexSelectedInfo = (int) v.getTag();
+                        CustomDialogClass cdd = new CustomDialogClass(ProfileActivity.this);
+                        cdd.setCanceledOnTouchOutside(false);
+                        //cdd.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                        cdd.show();
+                    }
+                });
 
-            //reminderInfoView.setTag(position);
-
-            /*reminderInfoView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Functions.showToast(getApplicationContext(), "Now it shows the profile info of " + ProfilesListActivity.profiles.get((int) v.getTag()).getName());
-                }
-            });*/
+            }
 
             return reminderInfoView;
         }
     }
-    protected void updateProfile(){
-        this.textName.setText(this.profile.getName());
-        if(this.indexProfile == 0){
-            this.buttonPrev.setBackgroundResource(R.drawable.gradiant_bar_disabled);
-            this.buttonPrev.setEnabled(false);
-        }else{
-            this.buttonPrev.setBackgroundResource(R.drawable.gradiant_bar);
-            this.buttonPrev.setEnabled(true);
-        }
 
-        if(this.indexProfile == ProfileActivity.profiles.size()-1){
-            this.buttonNext.setBackgroundResource(R.drawable.gradiant_bar_disabled);
-            this.buttonNext.setEnabled(false);
-        }else{
-            this.buttonNext.setBackgroundResource(R.drawable.gradiant_bar);
-            this.buttonNext.setEnabled(true);
-        }
+    protected void updateProfile() {
+        this.textName.setText(ProfilesManager.getProfile().getName());
+        this.listReminders.setAdapter(new ProfileActivity.RemindersAdapter(ProfilesManager.getProfile().getReminders()));
+        ProfilesManager.updateButtons(this.buttonNext, this.buttonPrev);
     }
+
     @Override
     public void onResume() {
         super.onResume();
         updateProfile();
     }
 
-    public void previousProfile(View view){
+    public void previousProfile(View view) {
+        ProfilesManager.indexProfile--;
         YoYo.with(Techniques.SlideOutRight)
-                .duration(200)
+                .duration(175)
                 .withListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
@@ -148,10 +130,10 @@ public class ProfileActivity extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        YoYo.with(Techniques.SlideInLeft)
-                                .duration(200)
-                                .playOn(findViewById(R.id.layoutProfile));
                         updateProfile();
+                        YoYo.with(Techniques.SlideInLeft)
+                                .duration(175)
+                                .playOn(findViewById(R.id.layoutProfile));
                     }
 
                     @Override
@@ -165,13 +147,12 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 })
                 .playOn(this.layoutProfile);
-
-        this.profile = ProfileActivity.profiles.get(--this.indexProfile);
     }
 
-    public void nextProfile(View view){
+    public void nextProfile(View view) {
+        ProfilesManager.indexProfile++;
         YoYo.with(Techniques.SlideOutLeft)
-                .duration(200)
+                .duration(175)
                 .withListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
@@ -180,10 +161,10 @@ public class ProfileActivity extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        YoYo.with(Techniques.SlideInRight)
-                                .duration(200)
-                                .playOn(findViewById(R.id.layoutProfile));
                         updateProfile();
+                        YoYo.with(Techniques.SlideInRight)
+                                .duration(175)
+                                .playOn(findViewById(R.id.layoutProfile));
                     }
 
                     @Override
@@ -197,6 +178,47 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 })
                 .playOn(this.layoutProfile);
-        this.profile = ProfileActivity.profiles.get(++this.indexProfile);
+    }
+
+    public class CustomDialogClass extends Dialog implements
+            android.view.View.OnClickListener {
+
+        public Activity c;
+        public Dialog d;
+        public Button yes, no;
+
+        public CustomDialogClass(Activity a) {
+            super(a);
+            // TODO Auto-generated constructor stub
+            this.c = a;
+        }
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.custom_dialog_check_reminder);
+            String dialogBody = "Are you sure to check your reminder for \"";
+            ((TextView) findViewById(R.id.dialogBody)).setText(dialogBody + ProfilesManager.getProfile().getReminders().get(ProfileActivity.indexSelectedInfo).getInformation() + "\"");
+            yes = findViewById(R.id.btnYes);
+            no = findViewById(R.id.btnCancel);
+            yes.setOnClickListener(this);
+            no.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.btnYes:
+                    ProfilesManager.getProfile().checkReminder(ProfileActivity.indexSelectedInfo);
+                    updateProfile();
+                    dismiss();
+                    break;
+                case R.id.btnCancel:
+                    dismiss();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

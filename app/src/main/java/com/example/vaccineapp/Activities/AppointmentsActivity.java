@@ -1,94 +1,134 @@
 package com.example.vaccineapp.Activities;
 
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
-import com.example.vaccineapp.Classes.DrawCircle;
-import com.example.vaccineapp.Classes.Profile;
+import com.example.vaccineapp.custom.CustomEventDecorator;
+import com.example.vaccineapp.model.Appointment;
+import com.example.vaccineapp.model.Profile;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.model.ProfilesManager;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
+
+import net.danlew.android.joda.JodaTimeAndroid;
+
+import org.joda.time.LocalDateTime;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AppointmentsActivity extends AppCompatActivity {
 
-    private List<Profile> profiles;
-    private int profileIndex = 0;
-    private TextView profileName;
-    private LinearLayout colorContainer;
+    private ListView listAppointments;
+    private MaterialCalendarView calendarAppointments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointments);
-        this.profileName = findViewById(R.id.profile_name);
-        this.profiles = new ArrayList<>();
-        this.profiles.add(new Profile("Me", Color.BLUE, ""));
-        this.profiles.add(new Profile("Child 2", Color.RED, ""));
-        this.profiles.add(new Profile("Child 3", Color.GREEN, ""));
-        this.colorContainer = findViewById(R.id.circlePlace);
-        changeProfile(3);
+        this.listAppointments = findViewById(R.id.listAppointments);
+        this.calendarAppointments = findViewById(R.id.calendarView);
+        JodaTimeAndroid.init(this);
+
+        this.calendarAppointments.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView materialCalendarView, @NonNull CalendarDay calendarDay, boolean b) {
+                int year = calendarDay.getYear();
+                int month = calendarDay.getMonth();
+                int day = calendarDay.getDay();
+                ((ListView) findViewById(R.id.listAppointments)).setAdapter(new AppointmentsAdapter(year, month, day));
+            }
+        });
+
+        this.calendarAppointments.setSelectedDate(CalendarDay.today());
+        this.calendarAppointments.addDecorator(new DayViewDecorator() {
+            @Override
+            public boolean shouldDecorate(CalendarDay calendarDay) {
+                for(int i = 0; i < ProfilesManager.profiles.size(); i++){
+                    Profile profile = ProfilesManager.profiles.get(i);
+                    for(int j = 0; j < profile.getAppointments().size(); j++){
+                        LocalDateTime date = profile.getAppointments().get(j).getDate();
+                        if(date.getYear() == calendarDay.getYear() && date.getMonthOfYear() == calendarDay.getMonth() && date.getDayOfMonth() == calendarDay.getDay()){
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public void decorate(DayViewFacade dayViewFacade) {
+                dayViewFacade.addSpan(new DotSpan(10, Color.rgb(255,0,0)));
+            }
+        });
+
+        //this.calendarAppointments.addDecorator(new CustomEventDecorator());
 
     }
 
-    public void previousProfile(View view) {
-        if (this.profileIndex != 0) {
-            this.profileIndex--;
-            changeProfile(0);
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    private class AppointmentsAdapter extends BaseAdapter {
+
+        private ArrayList<Appointment> appointments;
+
+        @Override
+        public int getCount() {
+            return this.appointments.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        public AppointmentsAdapter(int year, int month, int day) {
+            this.appointments = ProfilesManager.getAppointmentsFromDate(year, month, day);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup container) {
+            if (convertView == null) {
+                convertView = getLayoutInflater().inflate(R.layout.listed_appointment_info, container, false);
+            }
+            LinearLayout appointmentInfoView = (LinearLayout) convertView;
+            Appointment appointment = this.appointments.get(position);
+            ((TextView) appointmentInfoView.findViewById(R.id.textAppointmentReason)).setText(appointment.getReason());
+            ((TextView) appointmentInfoView.findViewById(R.id.textAppointmentHour)).setText(appointment.getDateString());
+            // ((ImageView) appointmentInfoView.findViewById(R.id.imgAppointmentDoctor)).setImageResource(appointment.getDoctor().getImage());
+            /*appointmentInfoView.setTag(position);
+                appointmentInfoView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ProfileActivity.indexSelectedInfo = (int) v.getTag();
+                        ProfileActivity.CustomDialogClass cdd = new ProfileActivity.CustomDialogClass(ProfileActivity.this);
+                        cdd.setCanceledOnTouchOutside(false);
+                        //cdd.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                        cdd.show();
+                    }
+                });
+            */
+            return appointmentInfoView;
         }
     }
-
-    public void nextProfile(View view) {
-        if (this.profileIndex != this.profiles.size() - 1) {
-            this.profileIndex++;
-            changeProfile(1);
-        }
-    }
-
-    private void changeProfile(int direction) {
-        if(direction == 0){
-            YoYo.with(Techniques.SlideOutRight)
-                    .duration(300)
-                    .playOn(this.profileName);
-            YoYo.with(Techniques.SlideOutRight)
-                    .duration(300)
-                    .playOn(this.colorContainer);
-        }else if (direction == 1){
-        YoYo.with(Techniques.SlideOutLeft)
-                .duration(300)
-                .playOn(this.profileName);
-            YoYo.with(Techniques.SlideOutLeft)
-                    .duration(300)
-                    .playOn(this.colorContainer);
-        }
-        Profile selectedProf = this.profiles.get(this.profileIndex);
-        this.profileName.setText(selectedProf.getName());
-        this.colorContainer.removeAllViews();
-        View circle = new DrawCircle(getApplicationContext(), selectedProf.getColor());
-        this.colorContainer.addView(circle);
-
-       if(direction == 0){
-           YoYo.with(Techniques.SlideInLeft)
-                   .duration(300)
-                   .playOn(this.profileName);
-           YoYo.with(Techniques.SlideInLeft)
-                   .duration(300)
-                   .playOn(this.colorContainer);
-       }else if (direction == 1){
-           YoYo.with(Techniques.SlideInRight)
-                   .duration(300)
-                   .playOn(this.profileName);
-           YoYo.with(Techniques.SlideInRight)
-                   .duration(300)
-                   .playOn(this.colorContainer);
-       }
-
-    }
-
 }

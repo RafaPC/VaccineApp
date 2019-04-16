@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.vaccineapp.Classes.Functions;
+import com.example.vaccineapp.model.Functions;
 import com.example.vaccineapp.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
@@ -44,10 +44,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     //Maybe put that when the user clicks the check button on the keyboard, resetPassword() is called
     private void checkInput(){
         if(this.inputEmail.getText().length() > 0){
-            this.buttonReset.setBackgroundResource(R.drawable.gradiant_bar);
+            this.buttonReset.setBackgroundResource(R.drawable.button_gradient);
             this.buttonReset.setEnabled(true);
         }else{
-            this.buttonReset.setBackgroundResource(R.drawable.gradiant_bar_disabled);
+            this.buttonReset.setBackgroundResource(R.drawable.button_gradient_disabled);
             this.buttonReset.setEnabled(false);
         }
     }

@@ -1,5 +1,6 @@
 package com.example.vaccineapp.Activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputEditText;
@@ -12,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.vaccineapp.Classes.Functions;
+import com.example.vaccineapp.model.Functions;
 import com.example.vaccineapp.R;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -112,7 +113,8 @@ public class SignUpActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.nav_home:
-                    Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.nav_profile:
                     Toast.makeText(getApplicationContext(), "Profile", Toast.LENGTH_LONG).show();
@@ -131,10 +133,10 @@ public class SignUpActivity extends AppCompatActivity {
         String password1 = "" + this.inputPassword1.getText();
         String password2 = "" + this.inputPassword2.getText();
         if(name.length() != 0 && email.length() != 0 && password1.length() != 0 && password2.length() != 0){
-            this.buttonSignUp.setBackgroundResource(R.drawable.gradiant_bar);
+            this.buttonSignUp.setBackgroundResource(R.drawable.button_gradient);
             this.buttonSignUp.setEnabled(true);
         }else{
-            this.buttonSignUp.setBackgroundResource(R.drawable.gradiant_bar_disabled);
+            this.buttonSignUp.setBackgroundResource(R.drawable.button_gradient_disabled);
             this.buttonSignUp.setEnabled(false);
         }
 
