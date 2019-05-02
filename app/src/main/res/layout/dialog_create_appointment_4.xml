@@ -5,14 +5,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="20dp"
-    android:paddingRight="20dp">
+    android:paddingTop="30dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="30dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
         android:text="Following appointment have been made:"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
@@ -31,13 +35,15 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:srcCompat="@drawable/ambulanceicon" />
+            app:srcCompat="@drawable/doctor" />
 
         <TextView
+            android:id="@+id/dialogTxtDoctor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Tic Hospital (Dr. Health Raider)"
+            android:layout_marginLeft="5dp"
+            android:text="lDr. Health Raider"
             android:textColor="@android:color/black" />
     </LinearLayout>
 
@@ -50,12 +56,35 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:srcCompat="@drawable/ambulanceicon" />
+            app:srcCompat="@drawable/hospital" />
 
         <TextView
+            android:id="@+id/dialogTxtHospital"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:text="Tic Hospital"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/calendar" />
+
+        <TextView
+            android:id="@+id/dialogTxtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
             android:text="14 - January - 2019"
             android:textColor="@android:color/black" />
     </LinearLayout>
@@ -69,12 +98,14 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:srcCompat="@drawable/ambulanceicon" />
+            app:srcCompat="@drawable/clock" />
 
         <TextView
+            android:id="@+id/dialogTxtTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
             android:text="07:00 AM"
             android:textColor="@android:color/black" />
 
@@ -86,6 +117,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="30dp"
@@ -96,6 +128,7 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

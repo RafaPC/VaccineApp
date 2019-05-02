@@ -10,6 +10,9 @@
         <item name="windowActionBar">false</item>
     </style>
 
-
+    <style name="custom_dialog">
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+    </style>
 
 </resources>

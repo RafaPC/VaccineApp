@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:height="5dp" android:width="5dp">
+        <bitmap
+            android:tint="@color/colorAccent"
+            android:src="@drawable/ic_dot" />
+    </item>
+</layer-list>

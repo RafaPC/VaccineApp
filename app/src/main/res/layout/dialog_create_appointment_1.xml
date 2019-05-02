@@ -2,55 +2,69 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
     android:orientation="vertical"
     android:paddingLeft="20dp"
-    android:paddingRight="20dp">
+    android:paddingTop="30dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="30dp">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:text="Create an appointment"
         android:textSize="24sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <Spinner
+        android:id="@+id/dialogSpinnerProfile"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_styles"
+        android:spinnerMode="dropdown" />
+
+    <android.support.design.widget.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/dialogInputReason"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type in reason" />
+            android:hint="Type in reason"
+            android:inputType="text|textCapSentences" />
+    </android.support.design.widget.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+    <Spinner
+        android:id="@+id/dialogSpinnerHospital"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_styles"
+        android:spinnerMode="dropdown" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <android.support.design.widget.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/dialogInputDoctor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Choose Hospital" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="Type in doctor"
+            android:inputType="textPersonName|textCapWords|textCapCharacters" />
+    </android.support.design.widget.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Type in Doctor" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/dialogBtnNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_gradient"

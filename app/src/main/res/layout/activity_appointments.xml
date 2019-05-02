@@ -15,12 +15,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColorLink="#00C94040" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:onClick="createAppointment"
             app:srcCompat="@android:drawable/ic_input_add" />
     </LinearLayout>
 
@@ -31,17 +33,20 @@
         android:layout_marginRight="20dp"
         android:orientation="vertical">
 
-        <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.applandeo.materialcalendarview.CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            app:mcv_selectionColor="#00F"
-            app:mcv_showOtherDates="all" />
+            app:eventsEnabled="true"
+            app:headerColor="@color/colorAccent"
+            app:selectionColor="@color/colorAccent"
+            app:todayLabelColor="@color/colorend_pressed"
+            app:type="one_day_picker" />
 
         <ListView
             android:id="@+id/listAppointments"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="155dp"
             android:divider="@null"
             android:dividerHeight="5dp" />
     </LinearLayout>

@@ -60,7 +60,7 @@ public class ProfilesListActivity extends AppCompatActivity {
             }
             LinearLayout profileInfoView = (LinearLayout) convertView;
             Profile profile = this.profiles.get(position);
-            ((ImageView) profileInfoView.findViewById(R.id.imgListedProfile)).setImageResource(R.drawable.doctoricon);
+            ((ImageView) profileInfoView.findViewById(R.id.imgProfile)).setImageResource(profile.getImage());
             ((TextView) profileInfoView.findViewById(R.id.textProfileName)).setText(profile.getName());
             ((TextView)profileInfoView.findViewById(R.id.textProfileAge)).setText(profile.getAge() + " years - " + profile.getBirthdate());
             ((TextView)profileInfoView.findViewById(R.id.textProfileInfo)).setText("Information");
@@ -85,7 +85,7 @@ public class ProfilesListActivity extends AppCompatActivity {
     }
 
     public void createProfile(View view){
-        Functions.showToast(getApplicationContext(), "Now the profile creation screen is shown");
+        Functions.showToast(getApplicationContext(), "Now the Profile creation screen is shown");
     }
 
     @Override

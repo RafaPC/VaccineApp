@@ -1,5 +1,4 @@
 package com.example.vaccineapp.model;
-
 import com.example.vaccineapp.R;
 
 public class InfoElement {

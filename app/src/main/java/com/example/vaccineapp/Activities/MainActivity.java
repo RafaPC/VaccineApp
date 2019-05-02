@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.vaccineapp.model.Appointment;
-import com.example.vaccineapp.model.InfoElement;
+import com.example.vaccineapp.model_kotlin.InfoElement;
 import com.example.vaccineapp.model.Profile;
 import com.example.vaccineapp.model.ProfilesManager;
 import com.example.vaccineapp.model.Service;
@@ -21,6 +21,7 @@ import com.example.vaccineapp.R;
 import org.joda.time.LocalDateTime;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,19 +35,28 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(itemSelect);
 
         if (ProfilesManager.profiles.size() == 0) {
-            Profile profile1 = new Profile("Juan Carlos", Color.RED, "12-07-1995", 26, 1);
+            Calendar cal1 = Calendar.getInstance();
+            cal1.set(1985, 3, 14);
+            Profile profile1 = new Profile("Juan Carlos", Color.RED, cal1, 26, 1);
             profile1.addInformation("Pre-pregnant");
             profile1.addInformation("Blood type 0+");
+            profile1.setImage(R.drawable.doctoricon);
             ProfilesManager.profiles.add(profile1);
 
-            Profile profile2 = new Profile("Hatty Hattington", Color.BLUE, "12-07-1983", 36, 2);
+            Calendar cal2 = Calendar.getInstance();
+            cal2.set(1983, 11, 7);
+            Profile profile2 = new Profile("Hatty Hattington", Color.BLUE, cal2, 36, 2);
             profile2.addInformation("First child");
             profile2.addInformation("Blood type 0+");
+            profile2.setImage(R.drawable.ambulanceicon);
             ProfilesManager.profiles.add(profile2);
 
-            Profile profile3 = new Profile("Test", Color.GREEN, "27-03-1994", 25, 0);
+            Calendar cal3 = Calendar.getInstance();
+            cal3.set(1994, 8, 24);
+            Profile profile3 = new Profile("Test", Color.GREEN, cal3, 25, 0);
             profile3.addInformation("Second child");
             profile3.addInformation("Blood type 0-");
+            profile3.setImage(R.drawable.calendar_icon);
             ProfilesManager.profiles.add(profile3);
 
             /* -------------------------------------------------------- */

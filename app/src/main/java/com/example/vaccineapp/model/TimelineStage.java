@@ -1,5 +1,7 @@
 package com.example.vaccineapp.model;
 
+import com.example.vaccineapp.model_kotlin.InfoElement;
+
 import java.util.ArrayList;
 
 public class TimelineStage {

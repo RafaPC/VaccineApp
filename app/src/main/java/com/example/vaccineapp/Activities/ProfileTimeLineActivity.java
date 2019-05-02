@@ -15,16 +15,17 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.example.vaccineapp.model.InfoElement;
+import com.example.vaccineapp.model_kotlin.InfoElement;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.model.ProfilesManager;
 import com.example.vaccineapp.model.TimelineStage;
 
 import java.util.ArrayList;
 
-public class TimeLineActivity extends AppCompatActivity {
+public class ProfileTimeLineActivity extends AppCompatActivity {
     private TextView textName;
     private ListView listTimeline;
+    private ImageView imageProfile;
     private ImageButton buttonPrev;
     private ImageButton buttonNext;
     private LinearLayout layoutProfile;
@@ -33,9 +34,10 @@ public class TimeLineActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
+        setContentView(R.layout.activity_profile_timeline);
         this.textName = findViewById(R.id.textName);
         this.listTimeline = findViewById(R.id.listTimeline);
+        this.imageProfile = findViewById(R.id.imgProfile);
         this.buttonPrev = findViewById(R.id.buttonPrev);
         this.buttonNext = findViewById(R.id.buttonNext);
         this.layoutProfile = findViewById(R.id.layoutProfile);
@@ -83,14 +85,14 @@ public class TimeLineActivity extends AppCompatActivity {
                 ((ImageView) linearLayout.findViewById(R.id.imgAlert)).setImageResource(actualElement.getAlertResource());
                 infoLayout.addView(linearLayout);
             }
-            //((TextView) profileInfoView.findViewById(R.id.profile_name)).setText(profile.getName());
-            //((TextView)profileInfoView.findViewById(R.id.profile_age)).setText(profile.getBirthdate());
+            //((TextView) profileInfoView.findViewById(R.id.profile_name)).setText(Profile.getName());
+            //((TextView)profileInfoView.findViewById(R.id.profile_age)).setText(Profile.getBirthdate());
             //profileInfoView.setTag(position);
 
             /*profileInfoView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Functions.showToast(getApplicationContext(), "Now it shows the profile info of " + ProfilesListActivity.profiles.get((int) v.getTag()).getName());
+                    Functions.showToast(getApplicationContext(), "Now it shows the Profile info of " + ProfilesListActivity.profiles.get((int) v.getTag()).getName());
                 }
             });*/
 
@@ -101,6 +103,7 @@ public class TimeLineActivity extends AppCompatActivity {
     protected void updateProfile() {
         this.textName.setText(ProfilesManager.getProfile().getName());
         this.adapter = new TimelineAdapter(ProfilesManager.getProfile().getTimeline());
+        this.imageProfile.setImageResource(ProfilesManager.getProfile().getImage());
         this.listTimeline.setAdapter(this.adapter);
         ProfilesManager.updateButtons(this.buttonNext, this.buttonPrev);
         this.listTimeline.setSelection(this.adapter.getCount() - 1);

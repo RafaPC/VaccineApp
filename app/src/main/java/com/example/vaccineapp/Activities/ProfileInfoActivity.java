@@ -40,11 +40,19 @@ public class ProfileInfoActivity extends AppCompatActivity {
         this.buttonNext = findViewById(R.id.buttonNext);
         this.buttonPrev = findViewById(R.id.buttonPrev);
         this.textName = findViewById(R.id.textName);
-        this.imageProfile = findViewById(R.id.imageProfile);
+        this.imageProfile = findViewById(R.id.imgProfile);
         this.textAge = findViewById(R.id.textAge);
         this.textKidsNumber = findViewById(R.id.textKidsNumber);
-        this.textBirth = findViewById(R.id.textBirth);
+        this.textBirth = findViewById(R.id.txtBirth);
         this.listInformation = findViewById(R.id.listInformation);
+
+        findViewById(R.id.imgEdit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfileEditActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private class InfoAdapter extends BaseAdapter {
@@ -84,7 +92,7 @@ public class ProfileInfoActivity extends AppCompatActivity {
             /*reminderInfoView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Functions.showToast(getApplicationContext(), "Now it shows the profile info of " + ProfilesListActivity.profiles.get((int) v.getTag()).getName());
+                    Functions.showToast(getApplicationContext(), "Now it shows the Profile info of " + ProfilesListActivity.profiles.get((int) v.getTag()).getName());
                 }
             });*/
 
@@ -95,8 +103,9 @@ public class ProfileInfoActivity extends AppCompatActivity {
     public void updateProfile() {
         this.textName.setText(ProfilesManager.getProfile().getName());
         this.textAge.setText("" + ProfilesManager.getProfile().getAge());
+        this.imageProfile.setImageResource(ProfilesManager.getProfile().getImage());
         this.textKidsNumber.setText("" + ProfilesManager.getProfile().getChildren());
-        this.textBirth.setText(ProfilesManager.getProfile().getBirthdate());
+        this.textBirth.setText(ProfilesManager.getProfile().getBirthdateString());
         this.listInformation.setAdapter(new ProfileInfoActivity.InfoAdapter(ProfilesManager.getProfile().getInformation()));
         ProfilesManager.updateButtons(this.buttonNext, this.buttonPrev);
     }

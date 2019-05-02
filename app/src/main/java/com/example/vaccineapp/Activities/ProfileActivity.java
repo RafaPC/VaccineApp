@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.example.vaccineapp.model.InfoElement;
+import com.example.vaccineapp.model_kotlin.InfoElement;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.model.ProfilesManager;
 
@@ -39,6 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         this.layoutProfile = findViewById(R.id.layoutProfile);
+        this.imageProfile = findViewById(R.id.imgProfile);
         this.buttonNext = findViewById(R.id.buttonNext);
         this.buttonPrev = findViewById(R.id.buttonPrev);
         this.textName = findViewById(R.id.textName);
@@ -46,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void changeToTimeline(View view) {
-        Intent intent = new Intent(this, TimeLineActivity.class);
+        Intent intent = new Intent(this, ProfileTimeLineActivity.class);
         startActivity(intent);
     }
 
@@ -108,6 +109,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     protected void updateProfile() {
         this.textName.setText(ProfilesManager.getProfile().getName());
+        this.imageProfile.setImageResource(ProfilesManager.getProfile().getImage());
         this.listReminders.setAdapter(new ProfileActivity.RemindersAdapter(ProfilesManager.getProfile().getReminders()));
         ProfilesManager.updateButtons(this.buttonNext, this.buttonPrev);
     }
@@ -180,7 +182,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .playOn(this.layoutProfile);
     }
 
-    public class CustomDialogClass extends Dialog implements
+    private class CustomDialogClass extends Dialog implements
             android.view.View.OnClickListener {
 
         public Activity c;

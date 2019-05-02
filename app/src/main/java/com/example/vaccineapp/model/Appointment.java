@@ -31,20 +31,64 @@ public class Appointment {
         return doctor;
     }
 
-    public String getDateString(){
-        return "" + date.getHourOfDay();
+    public String getDateString() {
+        return date.toString("dd - MMM - YYYY");
     }
 
-    public LocalDateTime getDate(){
+    public String getTimeString(){
+        return date.toString("hh:mm aa");
+    }
+
+    public LocalDateTime getDate() {
         return date;
     }
 
+    //CAMBIAR EL EQUALS
 
-    public boolean equals(int year, int month, int day){
-        if(date.getYear() == year && date.getMonthOfYear() == month && date.getDayOfMonth() == day){
+    public Profile getProfile() {
+        for (int i = 0; i < ProfilesManager.profiles.size(); i++) {
+            Profile profile = ProfilesManager.profiles.get(i);
+            for (int j = 0; j < profile.getAppointments().size(); j++) {
+                if(this.equals(profile.getAppointments().get(j))){
+                    return profile;
+                }
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Service> getServices(){
+        return this.services;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == this){
             return true;
         }else{
             return false;
         }
+    }
+
+    public boolean alreadyExists(){
+        boolean exists = false;
+        for(Profile profile: ProfilesManager.profiles){
+            for(Appointment appointment: profile.getAppointments()){
+                if(this.equals(appointment)){
+
+               }
+            }
+        }
+        return exists;
+    }
+
+    public int getServicesCost(){
+        int cost = 0;
+
+        for(Service service : this.services){
+            cost += service.getPrice();
+        }
+
+        return cost;
     }
 }
