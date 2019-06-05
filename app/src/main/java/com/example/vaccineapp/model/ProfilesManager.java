@@ -2,6 +2,9 @@ package com.example.vaccineapp.model;
 
 import android.widget.ImageButton;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.model_kotlin.Appointment;
+import com.example.vaccineapp.model_kotlin.Profile;
+
 import java.util.ArrayList;
 
 public class ProfilesManager {

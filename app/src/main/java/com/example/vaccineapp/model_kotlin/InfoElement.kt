@@ -1,17 +1,13 @@
-@file:JvmName("InfoElement")
-
 package com.example.vaccineapp.model_kotlin
 
 import com.example.vaccineapp.R
 
-const val OK = 1;
-const val WARNING = -1;
-const val DANGER = -2;
+const val OK = 1
+const val WARNING = -1
+const val DANGER = -2
 
 
-class InfoElement (information: String, alertLevel: Int){
-    val information: String = information
-    private var alertLevel: Int = alertLevel
+class InfoElement (val information: String, var alertLevel: Int){
 
     fun getAlertResource(): Int{
         return when(alertLevel){

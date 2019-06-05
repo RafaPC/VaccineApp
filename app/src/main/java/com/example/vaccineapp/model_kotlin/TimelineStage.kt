@@ -8,11 +8,8 @@ class TimelineStage {
         timelineGroup.add(info)
     }
 
-    fun getInfoElement(position: Int){
-        timelineGroup.get(position)
-    }
+    fun getInfoElement(position: Int): InfoElement = timelineGroup.get(position)
 
-    fun getSize(){
-        timelineGroup.size
-    }
+    val size: Int
+    get() = timelineGroup.size
 }

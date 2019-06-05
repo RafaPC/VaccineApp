@@ -1,8 +1,10 @@
-package com.example.vaccineapp.model
+package com.example.vaccineapp.model_kotlin
 
 import android.content.Context
 
 import com.example.vaccineapp.model_kotlin.InfoElement
+import com.example.vaccineapp.model_kotlin.OK
+import com.example.vaccineapp.model_kotlin.TimelineStage
 
 import org.joda.time.LocalDate
 
@@ -11,7 +13,7 @@ import java.util.Calendar
 
 class Profile(var name: String, val color: Int, var birthdate: Calendar?, val age: Int, val children: Int) {
     val information: ArrayList<String> = ArrayList()
-    val timeline: ArrayList<TimelineStage> = ArrayList()
+    val timeline: ArrayList<TimelineStage> = arrayListOf<TimelineStage>()
     val appointments: ArrayList<Appointment> = ArrayList()
     var image: Int = 0
 
@@ -71,9 +73,9 @@ class Profile(var name: String, val color: Int, var birthdate: Calendar?, val ag
 
     fun checkReminder(position: Int) {
         var count = 0
-        for (timelineStage in this.timeline) {
+        for (timelineStage in timeline) {
             //If the first element isn't checked loops throught the infoElements within the stage
-            if (timelineStage.getInfoElement(0).getAlertResource() != 1) {
+            if (timelineStage.getInfoElement(0).getAlertResource() != OK) {
                 var checked = true
                 for (j in 1 until timelineStage.size) {
                     val infoElement = timelineStage.getInfoElement(j)

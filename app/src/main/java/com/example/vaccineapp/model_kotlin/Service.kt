@@ -1,6 +1,5 @@
 package com.example.vaccineapp.model_kotlin
 
-class Service (name: String, price: Int){
-    val name: String = name
-    val price: Int = price
+class Service(val serviceName: String, val price: Int) {
+    private val coin: String? = null
 }

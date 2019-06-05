@@ -1,7 +1,7 @@
-package com.example.vaccineapp.model
+package com.example.vaccineapp.model_kotlin
 
 import org.joda.time.LocalDateTime
-
+import com.example.vaccineapp.model.ProfilesManager
 import java.util.ArrayList
 
 class Appointment(val reason: String, val hospital: String //This could be an id to identify the hospital
@@ -14,7 +14,7 @@ class Appointment(val reason: String, val hospital: String //This could be an id
     val timeString: String
         get() = date.toString("hh:mm aa")
 
-    //CAMBIAR EL EQUALS
+    //TODO: change the equals
 
     val profile: Profile?
         get() {
