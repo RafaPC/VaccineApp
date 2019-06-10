@@ -12,9 +12,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.vaccineapp.model.Functions;
-import com.example.vaccineapp.model.Profile;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.model.ProfilesManager;
+import com.example.vaccineapp.model_kotlin.Profile;
 
 import java.util.ArrayList;
 
@@ -62,7 +62,7 @@ public class ProfilesListActivity extends AppCompatActivity {
             Profile profile = this.profiles.get(position);
             ((ImageView) profileInfoView.findViewById(R.id.imgProfile)).setImageResource(profile.getImage());
             ((TextView) profileInfoView.findViewById(R.id.textProfileName)).setText(profile.getName());
-            ((TextView)profileInfoView.findViewById(R.id.textProfileAge)).setText(profile.getAge() + " years - " + profile.getBirthdate());
+            ((TextView)profileInfoView.findViewById(R.id.textProfileAge)).setText(profile.getAge() + " years - " + profile.getBirthdateString());
             ((TextView)profileInfoView.findViewById(R.id.textProfileInfo)).setText("Information");
             profileInfoView.setTag(position);
 

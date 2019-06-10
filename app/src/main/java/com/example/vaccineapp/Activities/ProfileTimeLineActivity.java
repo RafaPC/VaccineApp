@@ -18,7 +18,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.vaccineapp.model_kotlin.InfoElement;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.model.ProfilesManager;
-import com.example.vaccineapp.model.TimelineStage;
+import com.example.vaccineapp.model_kotlin.TimelineStage;
 
 import java.util.ArrayList;
 

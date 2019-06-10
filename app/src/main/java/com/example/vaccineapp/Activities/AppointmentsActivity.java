@@ -25,12 +25,12 @@ import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
-import com.example.vaccineapp.model.Appointment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.model.Functions;
-import com.example.vaccineapp.model.Profile;
 import com.example.vaccineapp.model.ProfilesManager;
-import com.example.vaccineapp.model.Service;
+import com.example.vaccineapp.model_kotlin.Appointment;
+import com.example.vaccineapp.model_kotlin.Profile;
+import com.example.vaccineapp.model_kotlin.Service;
 
 
 import net.danlew.android.joda.JodaTimeAndroid;

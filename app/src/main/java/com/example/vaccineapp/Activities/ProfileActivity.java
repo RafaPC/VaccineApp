@@ -89,7 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
             ((TextView) reminderInfoView.findViewById(R.id.textReminder)).setText(reminder.getInformation());
             ((ImageView) reminderInfoView.findViewById(R.id.imgReminder)).setImageResource(reminder.getAlertResource());
             reminderInfoView.setTag(position);
-            if(ProfilesManager.getProfile().getReminders().get(position).getAlert() != 1){
+            if(ProfilesManager.getProfile().getReminders().get(position).getAlertLevel() != 1){
                 reminderInfoView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

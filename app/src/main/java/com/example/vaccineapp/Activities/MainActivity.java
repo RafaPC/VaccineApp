@@ -6,17 +6,21 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.vaccineapp.model.Appointment;
+import com.example.vaccineapp.model_kotlin.Appointment;
+import com.example.vaccineapp.model_kotlin.Profile;
 import com.example.vaccineapp.model_kotlin.InfoElement;
-import com.example.vaccineapp.model.Profile;
 import com.example.vaccineapp.model.ProfilesManager;
-import com.example.vaccineapp.model.Service;
-import com.example.vaccineapp.model.TimelineStage;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.model_kotlin.Service;
+import com.example.vaccineapp.model_kotlin.TimelineStage;
 
 import org.joda.time.LocalDateTime;
 
@@ -30,11 +34,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(itemSelect);
 
+        //TRY TO DINAMICALLY RESIZE PHOTOS WITHOUT MAKING SEVERAL XML'S
+        LinearLayout rootView = (LinearLayout) findViewById(R.id.main_root_view);
+        Log.d("PRUEBA", "Altura total: " + rootView.getMeasuredWidth());
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        Log.d("PRUEBA", "Ancho total: " + width);
+        Log.d("PRUEBA", "Altura total: " + height);
+        ImageView imgVaccine = (ImageView) findViewById(R.id.img_vaccine);
+        ImageView imgHealth = (ImageView) findViewById(R.id.img_health);
+        imgVaccine.getLayoutParams().width = width/4;
+        imgVaccine.requestLayout();
+        imgHealth.getLayoutParams().width = width/4;
+        imgVaccine.requestLayout();
         if (ProfilesManager.profiles.size() == 0) {
+            Log.d("PRUEBA", "ENTRA A PONER LOS PERFILES");
             Calendar cal1 = Calendar.getInstance();
             cal1.set(1985, 3, 14);
             Profile profile1 = new Profile("Juan Carlos", Color.RED, cal1, 26, 1);
@@ -143,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
             stage35.addInfoElement(new InfoElement("HepB", -1));
             ProfilesManager.profiles.get(2).addTimelineStage(stage35);
         }
+        Log.d("PRUEBA", "Y al final del oncreate hay " + ProfilesManager.profiles.size() + " perfiles");
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener itemSelect = new BottomNavigationView.OnNavigationItemSelectedListener() {

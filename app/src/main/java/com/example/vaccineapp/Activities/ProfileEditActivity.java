@@ -2,8 +2,6 @@ package com.example.vaccineapp.Activities;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +16,6 @@ import android.widget.TextView;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.model.Functions;
 import com.example.vaccineapp.model.ProfilesManager;
-import com.example.vaccineapp.model.Service;
 
 import java.util.ArrayList;
 
@@ -36,7 +33,7 @@ public class ProfileEditActivity extends AppCompatActivity {
         DatePickerDialog dialog = new DatePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                ProfilesManager.getProfile().setBirthdate(getApplicationContext(), year, month, dayOfMonth);
+                ProfilesManager.getProfile().setBirthdate(year, month, dayOfMonth);
                 Functions.showToast(getApplicationContext(), "Año " + year + " Mes " + month + " Día " + dayOfMonth);
             }
         }, 2000, 5, 5);

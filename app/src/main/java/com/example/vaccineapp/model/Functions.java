@@ -20,3 +20,5 @@ public class Functions {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 }
+
+

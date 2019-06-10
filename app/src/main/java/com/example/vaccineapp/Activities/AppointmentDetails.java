@@ -10,8 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.vaccineapp.R;
-import com.example.vaccineapp.model.Appointment;
-import com.example.vaccineapp.model.Service;
+import com.example.vaccineapp.model_kotlin.Appointment;
+import com.example.vaccineapp.model_kotlin.Service;
 
 import org.joda.time.LocalDateTime;
 

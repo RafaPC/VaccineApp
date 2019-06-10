@@ -36,10 +36,7 @@ public class ProfilesManager {
     public static ArrayList<Appointment> getAllAppointments(){
         ArrayList<Appointment> appointments = new ArrayList<>();
         for(int i = 0; i < profiles.size(); i++){
-            Profile profile = profiles.get(i);
-            for(int j = 0; j < profile.getAppointments().size(); j++){
-                appointments.add(profile.getAppointments().get(j));
-            }
+            appointments.addAll(profiles.get(i).getAppointments());
         }
         return appointments;
     }
@@ -47,8 +44,7 @@ public class ProfilesManager {
     public static ArrayList<Appointment> getAppointmentsFromDate(int year, int month, int day){
         ArrayList<Appointment> appointments = new ArrayList<>();
         for(int i = 0; i < profiles.size(); i++){
-            Profile profile = profiles.get(i);
-            appointments.addAll(profile.getAppointmentsFromDate(year, month, day));
+            appointments.addAll(profiles.get(i).getAppointmentsFromDate(year, month, day));
         }
         return appointments;
     }
