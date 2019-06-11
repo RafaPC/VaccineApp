@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,25 +18,22 @@ import com.example.vaccineapp.model.Functions;
 import com.example.vaccineapp.R;
 
 public class SignInActivity extends AppCompatActivity {
-    private TextInputLayout layout_inputEmail;
     private TextInputEditText inputEmail;
-    private TextInputLayout layout_inputPassword;
     private TextInputEditText inputPassword;
-    private Button signInButton;
-
-    Intent intent = null;
+    private Button btnSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
-        this.inputEmail = findViewById(R.id.inputEmail);
-        this.inputPassword = findViewById(R.id.inputPass);
-        this.signInButton = findViewById(R.id.btnSignIn);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(itemSelect);
+        inputEmail = findViewById(R.id.inputEmail);
+        inputPassword = findViewById(R.id.inputPass);
+        btnSignIn = findViewById(R.id.btnSignIn);
+        ((BottomNavigationView)findViewById(R.id.bottom_navigation)).setOnNavigationItemSelectedListener(itemSelect);
 
-        this.inputEmail.addTextChangedListener(new TextWatcher() {
+
+        //Sets TextWatchers to both inputs in order to enable or disable the button when the text is changed
+        inputEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -51,20 +47,18 @@ public class SignInActivity extends AppCompatActivity {
                 checkInputs();
             }
         });
-
-        this.inputPassword.addTextChangedListener(new TextWatcher() {
+        inputPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+
                 checkInputs();
             }
         });
@@ -76,13 +70,10 @@ public class SignInActivity extends AppCompatActivity {
             switch (menuItem.getItemId()) {
                 case R.id.nav_home:
                     Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
-                    intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     break;
                 case R.id.nav_profile:
-                    //Toast.makeText(getApplicationContext(),"Profile",Toast.LENGTH_LONG).show();
-                    intent = new Intent(getApplicationContext(), SignInActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(getApplicationContext(), SignInActivity.class));
                     break;
                 case R.id.nav_settings:
                     Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_LONG).show();
@@ -93,37 +84,36 @@ public class SignInActivity extends AppCompatActivity {
     };
 
     public void createAccount(View v) {
-        Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
     }
 
     public void forgotPass(View v) {
-        Intent intent = new Intent(getApplicationContext(), ForgotPasswordActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
     }
 
     private void checkInputs() {
-        boolean error = false;
-        if (this.inputEmail.getText().length() > 0 && this.inputPassword.getText().length() > 0) {
-            this.signInButton.setBackgroundResource(R.drawable.button_gradient);
-            this.signInButton.setEnabled(true);
+        if (inputEmail.getText().length() > 0 && inputPassword.getText().length() > 0) {
+            btnSignIn.setBackgroundResource(R.drawable.button_gradient);
+            btnSignIn.setEnabled(true);
         } else {
-            this.signInButton.setBackgroundResource(R.drawable.button_gradient_disabled);
-            this.signInButton.setEnabled(false);
+            btnSignIn.setBackgroundResource(R.drawable.button_gradient_disabled);
+            btnSignIn.setEnabled(false);
         }
     }
 
-    public void login(View view) {
-        this.inputEmail.clearFocus();
-        this.inputPassword.clearFocus();
-        String email = "" + ((TextView)this.inputEmail).getText();
-        if (Functions.validateEmail(email)) {
-            Functions.showToast(getApplicationContext(), "Valid email");
-                Intent intent = new Intent(getApplicationContext(), ProfilesListActivity.class);
-                startActivity(intent);
+    public void login(View v) {
+        inputEmail.clearFocus();
+        inputPassword.clearFocus();
 
+        //TextInputEditText.getText() returns CharSequence, so if added to "" it's smart casted to String
+        String email = "" + inputEmail.getText();
+
+        if (Functions.validateEmail(email)) {
+            Toast.makeText(getApplicationContext(), "Valid email", Toast.LENGTH_LONG).show();
+            //TODO: this should login the user and change to the main menu or the profiles screen
+            startActivity(new Intent(getApplicationContext(), ProfilesListActivity.class));
         }else{
-            Functions.showToast(getApplicationContext(), "Invalid email");
+            Toast.makeText(getApplicationContext(), "Invalid email", Toast.LENGTH_LONG).show();
         }
     }
 

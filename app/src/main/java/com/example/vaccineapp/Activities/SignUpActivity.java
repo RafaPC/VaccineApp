@@ -23,7 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
     private TextInputEditText inputTelephone;
     private TextInputEditText inputPassword1;
     private TextInputEditText inputPassword2;
-    private Button buttonSignUp;
+    private Button btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,44 +32,40 @@ public class SignUpActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(itemSelect);
 
-        this.inputName = findViewById(R.id.inputName);
-        this.inputEmail = findViewById(R.id.inputEmail);
-        this.inputTelephone = findViewById(R.id.inputTelephone);
-        this.inputPassword1 = findViewById(R.id.inputPassword1);
-        this.inputPassword2 = findViewById(R.id.inputPassword2);
-        this.buttonSignUp = findViewById(R.id.btnSignUp);
+        inputName = findViewById(R.id.inputName);
+        inputEmail = findViewById(R.id.inputEmail);
+        inputTelephone = findViewById(R.id.inputTelephone);
+        inputPassword1 = findViewById(R.id.inputPassword1);
+        inputPassword2 = findViewById(R.id.inputPassword2);
+        btnSignUp = findViewById(R.id.btnSignUp);
 
         this.inputName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkInputs();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkInputs();
             }
         });
 
         this.inputEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkInputs();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkInputs();
             }
         });
 
@@ -81,29 +77,26 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkInputs();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkInputs();
             }
         });
 
         this.inputPassword2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkInputs();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkInputs();
             }
         });
     }
@@ -128,39 +121,40 @@ public class SignUpActivity extends AppCompatActivity {
     };
 
     private void checkInputs(){
-        String name = "" + this.inputName.getText();
-        String email = "" + this.inputEmail.getText();
-        String password1 = "" + this.inputPassword1.getText();
-        String password2 = "" + this.inputPassword2.getText();
+        //TextInputEditText.getText() returns CharSequence, so if added to "" it's smart casted to String
+        String name = "" + inputName.getText();
+        String email = "" + inputEmail.getText();
+        String password1 = "" + inputPassword1.getText();
+        String password2 = "" + inputPassword2.getText();
         if(name.length() != 0 && email.length() != 0 && password1.length() != 0 && password2.length() != 0){
-            this.buttonSignUp.setBackgroundResource(R.drawable.button_gradient);
-            this.buttonSignUp.setEnabled(true);
+            btnSignUp.setBackgroundResource(R.drawable.button_gradient);
+            btnSignUp.setEnabled(true);
         }else{
-            this.buttonSignUp.setBackgroundResource(R.drawable.button_gradient_disabled);
-            this.buttonSignUp.setEnabled(false);
+            btnSignUp.setBackgroundResource(R.drawable.button_gradient_disabled);
+            btnSignUp.setEnabled(false);
         }
 
 
     }
     public void signUp(View view) {
-        boolean error = true;
-        String name = "" + this.inputName.getText();
-        String email = "" + this.inputEmail.getText();
-        String password1 = "" + this.inputPassword1.getText();
-        String password2 = "" + this.inputPassword2.getText();
+        String name = "" + inputName.getText();
+        String email = "" + inputEmail.getText();
+        String password1 = "" + inputPassword1.getText();
+        String password2 = "" + inputPassword2.getText();
         if(name.length() == 0){
-            Functions.showToast(getApplicationContext(), "You must write a name");
+            Toast.makeText(getApplicationContext(), "You must write a name", Toast.LENGTH_LONG).show();
         } else if (!Functions.validateEmail(email)) {
-            Functions.showToast(getApplicationContext(), "Invalid email");
+            //TODO: the system should check whether the email is already used in another profile
+            Toast.makeText(getApplicationContext(), "Invalid email", Toast.LENGTH_LONG).show();
         } else if (password1.length() == 0) {
-            Functions.showToast(getApplicationContext(), "You must write the password");
+            Toast.makeText(getApplicationContext(), "You must write a password", Toast.LENGTH_LONG).show();
         } else if (password2.length() == 0) {
-            Functions.showToast(getApplicationContext(), "You must confirm the password");
+            Toast.makeText(getApplicationContext(), "You must confirm the password", Toast.LENGTH_LONG).show();
         } else if (!password1.equals(password2)) {
-            Functions.showToast(getApplicationContext(), "Passwords must match");
+            Toast.makeText(getApplicationContext(), "Passwords must match", Toast.LENGTH_LONG).show();
         } else {
-            error = false;
-            Functions.showToast(getApplicationContext(), "Everything's fine");
+            //TODO: the system should also check whether the number has a good format or not
+            Toast.makeText(getApplicationContext(), "Everything is fine", Toast.LENGTH_LONG).show();
         }
     }
 

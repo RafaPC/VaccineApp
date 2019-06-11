@@ -7,57 +7,57 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vaccineapp.model.Functions;
 import com.example.vaccineapp.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
     private TextInputEditText inputEmail;
-    private Button buttonReset;
+    private Button btnReset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
-        this.inputEmail = findViewById(R.id.inputEmail);
-        this.buttonReset = findViewById(R.id.btn_resetPassword);
+        inputEmail = findViewById(R.id.inputEmail);
+        btnReset = findViewById(R.id.btn_resetPassword);
 
-        this.inputEmail.addTextChangedListener(new TextWatcher() {
+        //Sets a TextWatcher (text input listener) to enable the button only when something it's written
+        inputEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkInput();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                checkInput();
             }
         });
     }
 
     //Maybe put that when the user clicks the check button on the keyboard, resetPassword() is called
     private void checkInput(){
-        if(this.inputEmail.getText().length() > 0){
-            this.buttonReset.setBackgroundResource(R.drawable.button_gradient);
-            this.buttonReset.setEnabled(true);
+        if(inputEmail.getText().length() > 0){
+            btnReset.setBackgroundResource(R.drawable.button_gradient);
+            btnReset.setEnabled(true);
         }else{
-            this.buttonReset.setBackgroundResource(R.drawable.button_gradient_disabled);
-            this.buttonReset.setEnabled(false);
+            btnReset.setBackgroundResource(R.drawable.button_gradient_disabled);
+            btnReset.setEnabled(false);
         }
     }
 
-    public void resetPassword(View view){
-        String email = "" + ((TextView)this.inputEmail).getText();
+    public void resetPassword(View v){
+        String email = "" + inputEmail.getText();
         if(Functions.validateEmail(email)){
-            Functions.showToast(getApplicationContext(), "Now checks if the email exists and then send the message");
+            //TODO: Now checks if the email exists and then send the message
+            Toast.makeText(getApplicationContext(), "Recovery email sent", Toast.LENGTH_LONG).show();
         }else{
-            Functions.showToast(getApplicationContext(), "Invalid email");
+            Toast.makeText(getApplicationContext(), "Invalid email", Toast.LENGTH_LONG).show();
         }
     }
 }
