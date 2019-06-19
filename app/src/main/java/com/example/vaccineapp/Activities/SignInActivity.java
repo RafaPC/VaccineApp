@@ -64,23 +64,20 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener itemSelect = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.nav_home:
-                    Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    break;
-                case R.id.nav_profile:
-                    startActivity(new Intent(getApplicationContext(), SignInActivity.class));
-                    break;
-                case R.id.nav_settings:
-                    Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_LONG).show();
-                    break;
-            }
-            return false;
+    private BottomNavigationView.OnNavigationItemSelectedListener itemSelect = (@NonNull MenuItem menuItem) -> {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_profile:
+                Toast.makeText(getApplicationContext(), "Profile", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.nav_settings:
+                Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_LONG).show();
+                break;
         }
+        return false;
     };
 
     public void createAccount(View v) {

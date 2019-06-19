@@ -30,7 +30,6 @@ public class ProfileInfoActivity extends AppCompatActivity {
     private ImageButton buttonPrev;
     private ImageButton buttonNext;
     private LinearLayout layoutProfile;
-    Intent intent = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,22 +45,18 @@ public class ProfileInfoActivity extends AppCompatActivity {
         this.textBirth = findViewById(R.id.txtBirth);
         this.listInformation = findViewById(R.id.listInformation);
 
-        findViewById(R.id.imgEdit).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ProfileEditActivity.class);
-                startActivity(intent);
-            }
+        findViewById(R.id.imgEdit).setOnClickListener((View v) -> {
+                startActivity(new Intent(getApplicationContext(), ProfileEditActivity.class));
         });
     }
 
     private class InfoAdapter extends BaseAdapter {
 
-        private ArrayList<String> informations;
+        private ArrayList<String> informationList;
 
         @Override
         public int getCount() {
-            return this.informations.size();
+            return this.informationList.size();
         }
 
         @Override
@@ -75,7 +70,7 @@ public class ProfileInfoActivity extends AppCompatActivity {
         }
 
         public InfoAdapter(ArrayList<String> informations) {
-            this.informations = informations;
+            this.informationList = informations;
         }
 
         @Override
@@ -84,17 +79,8 @@ public class ProfileInfoActivity extends AppCompatActivity {
                 convertView = getLayoutInflater().inflate(R.layout.listed_profile_info, container, false);
             }
             LinearLayout informationInfoView = (LinearLayout) convertView;
-            String information = this.informations.get(position);
+            String information = this.informationList.get(position);
             ((TextView) informationInfoView.findViewById(R.id.textInformation)).setText(information);
-
-            //informationInfoView.setTag(position);
-
-            /*reminderInfoView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Functions.showToast(getApplicationContext(), "Now it shows the Profile info of " + ProfilesListActivity.profiles.get((int) v.getTag()).getName());
-                }
-            });*/
 
             return informationInfoView;
         }

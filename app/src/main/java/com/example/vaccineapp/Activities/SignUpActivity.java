@@ -101,12 +101,10 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener itemSelect = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    private BottomNavigationView.OnNavigationItemSelectedListener itemSelect = (@NonNull MenuItem menuItem) -> {
             switch (menuItem.getItemId()) {
                 case R.id.nav_home:
-                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.nav_profile:
@@ -117,8 +115,7 @@ public class SignUpActivity extends AppCompatActivity {
                     break;
             }
             return false;
-        }
-    };
+        };
 
     private void checkInputs(){
         //TextInputEditText.getText() returns CharSequence, so if added to "" it's smart casted to String

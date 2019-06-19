@@ -65,12 +65,9 @@ public class ProfilesListActivity extends AppCompatActivity {
             ((TextView) profileInfoView.findViewById(R.id.textProfileInfo)).setText("Information");
             profileInfoView.setTag(position);
 
-            profileInfoView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            profileInfoView.setOnClickListener((View view) -> {
                     ProfilesManager.indexProfile = (int) view.getTag();
                     startActivity(new Intent(ProfilesListActivity.this, ProfileActivity.class));
-                }
             });
 
             return profileInfoView;
@@ -82,7 +79,7 @@ public class ProfilesListActivity extends AppCompatActivity {
     }
 
     public void createProfile(View view) {
-        //TODO: should appear a dialog that lets create a profile
+        //TODO: should appear a dialog to create a profile
         Toast.makeText(getApplicationContext(), "Now the profile creation screen is shown", Toast.LENGTH_LONG).show();
     }
 

@@ -38,13 +38,10 @@ public class ProfileEditActivity extends AppCompatActivity {
             }
         }, 2000, 5, 5);
 
-        findViewById(R.id.txtBirth).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.show();
-            }
-        });
 
+        findViewById(R.id.txtBirth).setOnClickListener((View v) -> {
+            dialog.show();
+        });
 
     }
 
@@ -91,18 +88,16 @@ public class ProfileEditActivity extends AppCompatActivity {
             //((ImageView) serviceInfoView.findViewById(R.id.imgAppointmentPhoto)).setImageResource(appointment.getProfile().getPhoto());
 
             serviceInfoView.setTag(position);
-            serviceInfoView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if ((int) imgCheck.getTag() == 0) {
-                        imgCheck.setImageResource(R.drawable.check_filled);
-                        imgCheck.setTag(1);
-                        selectedInfo[position] = 1;
-                    } else {
-                        imgCheck.setImageResource(R.drawable.check_empty);
-                        imgCheck.setTag(0);
-                        selectedInfo[position] = 0;
-                    }
+
+            serviceInfoView.setOnClickListener((View v) -> {
+                if ((int) imgCheck.getTag() == 0) {
+                    imgCheck.setImageResource(R.drawable.check_filled);
+                    imgCheck.setTag(1);
+                    selectedInfo[position] = 1;
+                } else {
+                    imgCheck.setImageResource(R.drawable.check_empty);
+                    imgCheck.setTag(0);
+                    selectedInfo[position] = 0;
                 }
             });
 

@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
@@ -52,7 +53,7 @@ public class AppointmentsActivity extends AppCompatActivity {
     private int selectedHospital, selectedProfile;
     protected static Appointment appointment;
     protected int[] selectedServices;
-    private ArrayList<Service> availablesServices;
+    private ArrayList<Service> availableServices;
     private int totalCost;
     private Calendar selectedCalendar;
 
@@ -60,7 +61,7 @@ public class AppointmentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointments);
-        this.availablesServices = new ArrayList<>();
+        this.availableServices = new ArrayList<>();
         this.hospitals.add("12 de octubre");
         this.hospitals.add("Hospital 1");
         this.hospitals.add("Hospital 2");
@@ -71,9 +72,7 @@ public class AppointmentsActivity extends AppCompatActivity {
         this.listAppointments = findViewById(R.id.listAppointments);
         this.calendarView = findViewById(R.id.calendarView);
         JodaTimeAndroid.init(this);
-        this.calendarView.setOnDayClickListener(new OnDayClickListener() {
-            @Override
-            public void onDayClick(EventDay eventDay) {
+        this.calendarView.setOnDayClickListener((EventDay eventDay) -> {
                 Calendar calendar = eventDay.getCalendar();
                 selectedCalendar = calendar;
                 int year = calendar.get(Calendar.YEAR);
@@ -81,16 +80,15 @@ public class AppointmentsActivity extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 Log.d("Appointments", "Año: " + year + "- Mes: " + month + "- Dia: " + day);
                 ((ListView) findViewById(R.id.listAppointments)).setAdapter(new AppointmentsAdapter(year, month + 1, day));
-            }
         });
         Calendar cal = Calendar.getInstance();
         selectedCalendar = cal;
         this.listAppointments.setAdapter(new AppointmentsAdapter(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH)));
-        this.availablesServices.add(new Service("Weekly Checkup", 50));
-        this.availablesServices.add(new Service("Vaccine for death", 200));
-        this.availablesServices.add(new Service("Vaccine for aids", 0));
-        this.availablesServices.add(new Service("Vaccine for air allergy", 30));
-        this.selectedServices = new int[availablesServices.size()];
+        this.availableServices.add(new Service("Weekly Checkup", 50));
+        this.availableServices.add(new Service("Vaccine for death", 200));
+        this.availableServices.add(new Service("Vaccine for aids", 0));
+        this.availableServices.add(new Service("Vaccine for air allergy", 30));
+        this.selectedServices = new int[availableServices.size()];
 
         /*OnSelectDateListener listener = new OnSelectDateListener() {
             @Override
@@ -104,6 +102,7 @@ public class AppointmentsActivity extends AppCompatActivity {
     public void loadAppointments() {
         List<EventDay> events = new ArrayList<>();
         ArrayList<Appointment> appointments = ProfilesManager.getAllAppointments();
+        //TODO: hacerlo un foreach
         for (int i = 0; i < appointments.size(); i++) {
             LocalDateTime date = appointments.get(i).getDate();
             Calendar calendar = Calendar.getInstance();
@@ -153,18 +152,14 @@ public class AppointmentsActivity extends AppCompatActivity {
             ((TextView) appointmentInfoView.findViewById(R.id.textAppointmentHour)).setText(appointment.getTimeString());
             ((ImageView) appointmentInfoView.findViewById(R.id.imgAppointmentPhoto)).setImageResource(appointment.getProfile().getImage());
             appointmentInfoView.setTag(position);
-            appointmentInfoView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int indexAppointment = (int) v.getTag();
+            appointmentInfoView.setOnClickListener((View view) -> {
+                    int indexAppointment = (int) view.getTag();
                     int year = selectedCalendar.get(Calendar.YEAR);
                     int month = selectedCalendar.get(Calendar.MONDAY);
                     int day = selectedCalendar.get(Calendar.DAY_OF_MONTH);
                     AppointmentsActivity.appointment = ProfilesManager.getAppointmentsFromDate(year, month + 1, day).get(indexAppointment);
 
-                    Intent intent = new Intent(getApplicationContext(), AppointmentDetails.class);
-                    startActivity(intent);
-                }
+                    startActivity(new Intent(getApplicationContext(), AppointmentDetails.class));
             });
 
             appointmentInfoView.startAnimation(AnimationUtils.loadAnimation(AppointmentsActivity.this, R.anim.animation_list_scroll));
@@ -223,9 +218,7 @@ public class AppointmentsActivity extends AppCompatActivity {
             }
         });
 
-        dialog_createAppointment.findViewById(R.id.dialogBtnNext).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        dialog_createAppointment.findViewById(R.id.dialogBtnNext).setOnClickListener((View view) -> {
                 String dialogReason = "" + inputReason.getText();
                 String dialogHospital = ((Spinner) dialog_createAppointment.findViewById(R.id.dialogSpinnerHospital)).getSelectedItem().toString();
                 String dialogDoctor = "" + inputDoctor.getText();
@@ -233,19 +226,15 @@ public class AppointmentsActivity extends AppCompatActivity {
                     reason = dialogReason;
                     hospital = dialogHospital;
                     doctor = dialogDoctor;
-
-                    dialog_createAppointment.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
+                    //TODO: mirar ahí el remplazar la lambda statement con la lambda expression
+                    dialog_createAppointment.setOnDismissListener((DialogInterface dialog) -> {
                             showCreateAppointment1_2();
-                        }
                     });
 
                     dialog_createAppointment.dismiss();
                 } else {
-                    Functions.showToast(getApplicationContext(), "Fill the fields");
+                    Toast.makeText(getApplicationContext(), "Fill the fields", Toast.LENGTH_LONG);
                 }
-            }
         });
 
         //Load the hospital spinner
@@ -280,21 +269,14 @@ public class AppointmentsActivity extends AppCompatActivity {
         textTotalCost.setText(totalCost + " €");
         ListView listServices = dialog_createAppointment.findViewById(R.id.listServices);
 
-        listServices.setAdapter(new ServicesAdapter(this.availablesServices, dialog_createAppointment.findViewById(R.id.txtTotalCost)));
+        listServices.setAdapter(new ServicesAdapter(this.availableServices, dialog_createAppointment.findViewById(R.id.txtTotalCost)));
 
         //Next button onClick listener
-        dialog_createAppointment.findViewById(R.id.dialogBtnNext).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog_createAppointment.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
+        dialog_createAppointment.findViewById(R.id.dialogBtnNext).setOnClickListener((View view) -> {
+                dialog_createAppointment.setOnDismissListener((DialogInterface dialog) -> {
                         showCreateAppointment2();
-                    }
                 });
-
                 dialog_createAppointment.dismiss();
-            }
         });
 
         dialog_createAppointment.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -312,38 +294,27 @@ public class AppointmentsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         //Calendar click listener
-        calendarView.setOnDayClickListener(new OnDayClickListener() {
-            @Override
-            public void onDayClick(EventDay eventDay) {
+        calendarView.setOnDayClickListener((EventDay eventDay) -> {
                 date = eventDay.getCalendar().getTimeInMillis();
-            }
         });
         //Next button listener
-        dialog_createAppointment.findViewById(R.id.dialogBtnNext).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        dialog_createAppointment.findViewById(R.id.dialogBtnNext).setOnClickListener((View view) -> {
                 //Dismiss listener
-                dialog_createAppointment.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
+                dialog_createAppointment.setOnDismissListener((DialogInterface dialog) -> {
                         showCreateAppointment3();
-                    }
                 });
 
                 dialog_createAppointment.dismiss();
-            }
         });
+
         dialog_createAppointment.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog_createAppointment.show();
     }
 
     private void showCreateAppointment3() {
-        Dialog dialog_createAppointment = new TimePickerDialog(AppointmentsActivity.this, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minuteOfHour) {
+        Dialog dialog_createAppointment = new TimePickerDialog(AppointmentsActivity.this, (TimePicker view, int hourOfDay, int minuteOfHour) -> {
                 time = (hourOfDay + 1) * 3600 * 1000 + minuteOfHour * 60 * 1000;
                 showCreateAppointment4();
-            }
         }, 12, 0, false);
         //dialog_createAppointment.setCanceledOnTouchOutside(true);
         //dialog_createAppointment.setContentView(R.layout.dialog_create_appointment_3);
@@ -362,22 +333,21 @@ public class AppointmentsActivity extends AppCompatActivity {
         ((TextView) dialog_createAppointment.findViewById(R.id.dialogTxtHospital)).setText(hospital);
         ((TextView) dialog_createAppointment.findViewById(R.id.dialogTxtDate)).setText(date.toString("dd - MMMM - YYYY"));
         ((TextView) dialog_createAppointment.findViewById(R.id.dialogTxtTime)).setText(date.toString("hh:mm aa"));
-        dialog_createAppointment.findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+        dialog_createAppointment.findViewById(R.id.btnSave).setOnClickListener((View view) -> {
                 //CONFIRM BUTTON CLICKED - THE APPOINTMENT IS CREATED
                 ArrayList<Service> services = new ArrayList<>();
                 /*
                 for(int index: selectedServices){
-                    services.add(availablesServices.get(index));
+                    services.add(availableServices.get(index));
                     if(index == 1){
 
                     }
                 }*/
 
-                for(int i = 0; i < availablesServices.size(); i++){
+                for(int i = 0; i < availableServices.size(); i++){
                     if(selectedServices[i] == 1){
-                        services.add(availablesServices.get(i));
+                        services.add(availableServices.get(i));
                     }
                 }
 
@@ -390,24 +360,18 @@ public class AppointmentsActivity extends AppCompatActivity {
                 AppointmentsAdapter adapter = new AppointmentsAdapter(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH));
                 listAppointments.setAdapter(adapter);
                 listAppointments.setSelection(adapter.getCount() - 1);
-            }
         });
-        dialog_createAppointment.findViewById(R.id.btnDelete).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog_createAppointment.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
+
+        dialog_createAppointment.findViewById(R.id.btnDelete).setOnClickListener((View view) -> {
+                dialog_createAppointment.setOnDismissListener((DialogInterface dialog) -> {
                         showCreateAppointment1();
-                    }
                 });
                 dialog_createAppointment.dismiss();
-            }
         });
         dialog_createAppointment.show();
     }
 
-    //Unused
+    //TODO: Unused
     private void goToAppointmentDetails(int position) {
         long unixTime = 0;
         unixTime = date + time;

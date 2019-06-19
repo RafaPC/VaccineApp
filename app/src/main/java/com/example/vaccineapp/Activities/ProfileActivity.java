@@ -31,7 +31,6 @@ public class ProfileActivity extends AppCompatActivity {
     private ListView listReminders;
     private ImageButton buttonNext;
     private ImageButton buttonPrev;
-    Intent intent = null;
     private static int indexSelectedInfo;
 
     @Override
@@ -89,16 +88,14 @@ public class ProfileActivity extends AppCompatActivity {
             ((TextView) reminderInfoView.findViewById(R.id.textReminder)).setText(reminder.getInformation());
             ((ImageView) reminderInfoView.findViewById(R.id.imgReminder)).setImageResource(reminder.getAlertResource());
             reminderInfoView.setTag(position);
+
             if(ProfilesManager.getProfile().getReminders().get(position).getAlertLevel() != 1){
-                reminderInfoView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ProfileActivity.indexSelectedInfo = (int) v.getTag();
-                        CustomDialogClass cdd = new CustomDialogClass(ProfileActivity.this);
-                        cdd.setCanceledOnTouchOutside(false);
-                        //cdd.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                        cdd.show();
-                    }
+                reminderInfoView.setOnClickListener((View v) -> {
+                    ProfileActivity.indexSelectedInfo = (int) v.getTag();
+                    CustomDialogClass cdd = new CustomDialogClass(ProfileActivity.this);
+                    cdd.setCanceledOnTouchOutside(false);
+                    //cdd.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    cdd.show();
                 });
 
             }
